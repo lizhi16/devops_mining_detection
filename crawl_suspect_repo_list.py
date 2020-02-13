@@ -8,8 +8,6 @@ from selenium import webdriver
 # save path for the list (1. without Docker; 2. contains Dockerfile)
 Path = "./repoList_{}.txt"
 Path_Dockerfile = "./repoList_{}_Dockerfile.txt"
-#address = "https://github.com/search?l=YAML&o=desc&p={}&q=filename%3A{}+path%3A%2F&s=indexed&type=Code"
-#address = "https://github.com/search?l=YAML&o=desc&p={}&q=created%3A%22%3E+{}%22+path%3A%2F+filename%3A{}&s=indexed&type=Code"
 address = "https://github.com/search?p={}&q=size%3A{}..{}+path%3A%2F+filename%3A{}&type=Code"
 address_circleci = "https://github.com/search?p={}&q=size%3A{}..{}+path%3A%2F.circleci%2F+filename%3A{}&type=Code"
 
@@ -17,14 +15,14 @@ configFiles = {
     "azure": "azure-pipelines.yml",
     "gitlab": ".gitlab-ci.yml",
     "appveyor": "appveyor.yml",
+    "codeship":"codeship-steps.yml",
+    "travis": ".travis.yml",
+    "cirrus": ".cirrus.yml"
+    "codefresh":"codefresh.yml",
+    "bitrise": "bitrise.yml",
+    "circleci": "config.yml"
 }
-#"codeship":"codeship-steps.yml",
-#"travis": ".travis.yml",
-#"cirrus": ".cirrus.yml"
 
-#"codefresh":"codefresh.yml",
-#"bitrise": "bitrise.yml",
-#"circleci": "config.yml"
 
 driver = webdriver.Firefox()
 driver.maximize_window()
