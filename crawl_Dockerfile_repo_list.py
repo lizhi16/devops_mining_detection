@@ -100,7 +100,7 @@ def check_search_results_numbers(startSize, endSize, configFile):
             else:
                 print ("the number of results is", int(number))
                 return int(number)
-        elif "We couldn’t find any code matching" in link:
+        elif "We couldn’t find any code matching" in link.text:
                 return -2
 
     links = soup.find_all('div',class_="px-2")
@@ -113,7 +113,7 @@ def check_search_results_numbers(startSize, endSize, configFile):
             else:
                 print ("the number of results is", int(number))
                 return int(number)
-        elif "We couldn’t find any code matching" in link:
+        elif "We couldn’t find any code matching" in link.text:
             return -2
        
     links = soup.find_all('h3')
@@ -126,7 +126,7 @@ def check_search_results_numbers(startSize, endSize, configFile):
             else:
                 print ("the number of results is", int(number))
                 return int(number)
-        elif "We couldn’t find any code matching" in link:
+        elif "We couldn’t find any code matching" in link.text:
             return -2
 
     return -3
