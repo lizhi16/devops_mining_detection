@@ -189,6 +189,19 @@ def check_search_results_numbers(startSize, endSize, configFile):
                 return int(number)
         elif "We couldn’t find any code matching" in link:
             return -2
+    
+    links = soup.find_all('h3')
+    for link in links:
+        if "code results" in link.text:
+            number = str(link.text).split()[0]
+            # if results over 1000, it will show "1,000"
+            if "," in number:
+                return -1
+            else:
+                print ("the number of results is", int(number))
+                return int(number)
+        elif "We couldn’t find any code matching" in link:
+            return -2
 
     return -3
 
