@@ -18,7 +18,7 @@ class push_thread(threading.Thread):
                    "--env GIT_USER=\"{}\" --env GIT_PASS=\"{}\" ubuntu:proxy".format(self.proxy,self.proxy,self.proxy,self.proxy,self.proxy,self.proxy,self.repo,self.email,self.user,self.passwd)
 
         for i in range(5):
-            ret = subprocess.run(commands, shell=True, timeout=60, stderr=subprocess.PIPE)
+            ret = subprocess.run(commands, shell=True, timeout=240, stderr=subprocess.PIPE)
             # success
             if ret.returncode == 0:
                 break
