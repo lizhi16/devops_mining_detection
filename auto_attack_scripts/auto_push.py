@@ -26,7 +26,7 @@ class push_thread(threading.Thread):
 
 def main():
     cores = 20
-    push_thread = []
+    push_threads = []
 
     csvFile = open("account.csv", "r")
     reader = csv.reader(csvFile)
@@ -36,12 +36,15 @@ def main():
         # keep the threads < cores numbers
         if len(threading.enumerate()) < cores:
             thread.start()
-            push_thread.append(thread)
+            push_threads.append(thread)
         else:
-            for t in push_thread:
+            for t in push_threads:
                 t.join()
 
-    for t in push_thread:
+    for t in push_threads:
         t.join()
 
     csvFile.close()
+    
+if __name__ = "__main__":
+    main()
