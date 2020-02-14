@@ -91,6 +91,7 @@ def resolve_suspect_github_list(savePath, savePath_Dockerfile, startSize, endSiz
                 projectList_Dockerfile.write(projectUrl + "\n")
 
         if content.status_code == 429:
+            index = index - 1
             print ("We get the 429, sleeping 60s")
             time.sleep(60)
 
