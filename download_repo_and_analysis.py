@@ -5,26 +5,36 @@
 import os
 import re
 import csv
+import requests
 import threading
 import subprocess
 
+header = ["user", "repo", "filename", "configFile", "githubAddress", "pool", "wallet", "tool", "prefix"]
+fLog = open('repo_analyze_results.csv','a+')
+f_csv = csv.DictWriter(fLog, fieldnames = header)
+f_csv.writeheader()
+
+reposList = {}
+
 repoList_Dockerfile = [
-    "repoList_appveyor_2018-01-01.txt",
-    "repoList_appveyor_Dockerfile_2018-01-01.txt",
-    "repoList_azure_2018-01-01.txt",
-    "repoList_azure_Dockerfile_2018-01-01.txt",
-    "repoList_bitrise_2018-01-01.txt",
-    "repoList_bitrise_Dockerfile_2018-01-01.txt",
-    "repoList_cirrus_2018-01-01.txt",
-    "repoList_cirrus_Dockerfile_2018-01-01.txt",
-    "repoList_codefresh_2018-01-01.txt",
-    "repoList_codefresh_Dockerfile_2018-01-01.txt",
-    "repoList_codeship_2018-01-01.txt",
-    "repoList_codeship_Dockerfile_2018-01-01.txt",
-    "repoList_gitlab_2018-01-01.txt",
-    "repoList_gitlab_Dockerfile_2018-01-01.txt",
-    "repoList_travis_2018-01-01.txt",
-    "repoList_travis_Dockerfile_2018-01-01.txt"
+    #"repoList_bitrise_Dockerfile.txt",
+    #"repoList_bitrise.txt",
+    #"repoList_codefresh_Dockerfile.txt",
+    #"repoList_codefresh.txt",
+    "repoList_circleci_Dockerfile.txt",
+    "repoList_circleci.txt",
+    "repoList_codeship_Dockerfile.txt",
+    "repoList_codeship.txt",
+    "repoList_travis_Dockerfile.txt",
+    "repoList_travis.txt",
+    "repoList_cirrus_Dockerfile.txt",
+    "repoList_cirrus.txt",
+    "repoList_gitlab_Dockerfile.txt",
+    "repoList_gitlab.txt",
+    "repoList_appveyor_Dockerfile.txt",
+    "repoList_appveyor.txt",
+    "repoList_azure_Dockerfile.txt",
+    "repoList_azure.txt"
 ]
 
 minerPools = [
@@ -133,13 +143,32 @@ class Crawl_thread(threading.Thread):
         self.checkout = self.baseUrl.split("/")[6]
         # files in the repos
         self.fileList = []
-        #print ("Dockerfile address: ", self.DockerfileAddress)
-        self.downloadPath = path + "/"
+        # Download path is devops + username
+        self.downloadPath = path + "/" + self.baseUrl.split("/")[3] + "/"
 
         self.devops = devops
 
     def run(self):
         print('Start Download Thread: ', self.image)
+
+        # pass the repo that had been analyzed
+        if self.image in reposList.keys():
+           return
+        reposList[self.image] = 1
+
+        # check github whether exist
+        if self.check_github_exist() == 0:
+            print (self.image, "doesn't exist...")
+            return
+        
+        # Create a folder named "users" to store one user's repos        
+        folder = os.path.exists(self.downloadPath)
+        if not folder:
+           try:
+              os.makedirs(self.downloadPath)
+           except Exception as e:
+              print (self.downloadPath, " create failed!")
+              pass
 
         # Downloads github repo
         status = self.download_repo()
@@ -153,19 +182,32 @@ class Crawl_thread(threading.Thread):
         # check the config files whether contains mining info
         self.check_repo_configFiles()
 
+    def check_github_exist(self):
+        url = "https://github.com/" + self.image
+        headers = {
+            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
+        }
+        for i in range(11):
+            content = requests.get(url, headers=headers)
+            if content.status_code == 200:
+                return 1
+            else:
+                continue
+        return 0
+
     def download_repo(self):
         commands = "cd " + self.downloadPath
         commands = commands + " && /usr/bin/git clone " + self.repoAddress
         commands = commands + " && cd " + self.repoDict
         #commands = commands + " && git checkout -b " + self.checkout
 
-        ret = subprocess.run(commands, shell=True, timeout=60, stderr=subprocess.PIPE)
+        ret = subprocess.run(commands, shell=True, timeout=40, stderr=subprocess.PIPE)
         # success
         if ret.returncode == 0:
             commands = "cd " + self.downloadPath + "/" + self.repoDict + " && /usr/bin/git checkout -b " + self.checkout
-            ret1 = subprocess.run(commands, shell=True, timeout=60, stderr=subprocess.PIPE)
+            ret1 = subprocess.run(commands, shell=True, timeout=20, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
             if ret1 != 0:
-                print (ret1.stderr)
+                print ("checkout", ret1.stderr)
             return 1
         # Fail to download repo
         print ("Fail to download repo: ", ret)
@@ -334,15 +376,10 @@ def resolve_Dockerfile_from_file(path):
 
     return Dockerfile
 
-header = ["user", "repo", "filename", "configFile", "githubAddress", "pool", "wallet", "tool", "prefix"]
-fLog = open('repo_analyze_results.csv','a+')
-f_csv = csv.DictWriter(fLog, fieldnames = header)
-f_csv.writeheader()
-
 def main():
     #cores = multiprocessing.cpu_count() - 3
     #print ("cores is ", cores)
-    cores = 15
+    cores = 5
 
     for repoList in repoList_Dockerfile:
 
@@ -367,6 +404,12 @@ def main():
             t.join()
 
         repo.close()
+
+        # delete the source file
+        command = "/usr/bin/rm -rf " + path + "/*"
+        ret = subprocess.run(command, shell=True, timeout=40, stderr=subprocess.PIPE)
+        if ret.returncode != 0:
+            print ("remove failed:", ret.stderr)
 
     fLog.close()
 
