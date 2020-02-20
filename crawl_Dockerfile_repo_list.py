@@ -8,7 +8,7 @@ from selenium import webdriver
 # save path for the list (1. without Docker; 2. contains Dockerfile)
 Path = "./repoList_{}.txt"
 
-address = "https://github.com/search?p={}&q=size%3A{}..{}+filename%3A{}&type=Code"
+address = "https://github.com/search?l=Dockerfile&p={}&q=size%3A{}..{}+filename%3A{}&type=Code"
 
 configFiles = {
     "Dockerfile": "Dockerfile",
@@ -69,7 +69,7 @@ def resolve_suspect_github_list(savePath, startSize, endSize, configFile):
             if projectConfig == "Dockerfile":
                 count = count + 1
                 print ("Get Dockerfile ->", count)
-
+                
                 Url = str(project['href']).split("/")
                 projectUrl = "https://github.com/" + Url[1] + "/" + Url[2] + "/tree/" + Url[4]
                 projectList.write(projectUrl + "\n")
@@ -80,6 +80,7 @@ def resolve_suspect_github_list(savePath, startSize, endSize, configFile):
             time.sleep(60)
 
         index = index + 1
+        time.sleep(3)
 
     projectList.close()
 
@@ -96,6 +97,8 @@ def check_search_results_numbers(startSize, endSize, configFile):
             number = str(link.text).split()[1]
             # if results over 1000, it will show "1,000"
             if "," in number:
+                if float(endSize) - float(startSize) <= 0.01:
+                    return 1
                 return -1
             else:
                 print ("the number of results is", int(number))
@@ -109,19 +112,8 @@ def check_search_results_numbers(startSize, endSize, configFile):
             number = str(link.text).split()[0]
             # if results over 1000, it will show "1,000"
             if "," in number:
-                return -1
-            else:
-                print ("the number of results is", int(number))
-                return int(number)
-        elif "We couldn’t find any code matching" in link.text:
-            return -2
-       
-    links = soup.find_all('h3')
-    for link in links:
-        if "code results" in link.text:
-            number = str(link.text).split()[0]
-            # if results over 1000, it will show "1,000"
-            if "," in number:
+                if float(endSize) - float(startSize) <= 0.1:
+                    return 1
                 return -1
             else:
                 print ("the number of results is", int(number))
@@ -129,6 +121,7 @@ def check_search_results_numbers(startSize, endSize, configFile):
         elif "We couldn’t find any code matching" in link.text:
             return -2
 
+    print("url is", url)
     return -3
 
 def main():
@@ -146,6 +139,7 @@ def main():
         # The times using to retry
         tryFlag = 5
         while endSize <= stopFlag:
+            print ("start in while", startSize, step, endSize)
             ok = check_search_results_numbers(startSize, endSize, configFile)
             if ok > 0:
                 resolve_suspect_github_list(savePath, startSize, endSize, configFile)
@@ -154,13 +148,23 @@ def main():
                 tryFlag = 5
             elif ok == -1:
                 # Github can receive the float type in searching
-                step = step/2
-                endSize = startSize + step
+                if endSize - startSize == 0:
+                    endSize = endSize + 0.01
+                elif endSize - startSize <= 1:
+                    endSize = startSize + (endSize - startSize)/2
+                else:
+                    step = step/2
+                    endSize = startSize + step
                 tryFlag = 5
                 continue
             # maybe in [..., ...] doesn't have results, and [..+1000, ...+2000] has results
             elif ok == -2:
-                endSize = startSize + step * 2
+                if endSize - startSize <= 1:
+                    step = (endSize - startSize)/2 + 0.1
+                elif endSize - startSize > 100:
+                    step = 100
+                startSize = endSize
+                endSize = startSize + step
                 tryFlag = 5
                 continue
             elif ok == -3:
@@ -175,3 +179,4 @@ def main():
 if __name__ == '__main__':
     main()
     driver.quit()
+
