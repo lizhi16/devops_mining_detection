@@ -212,7 +212,7 @@ def search_keywords():
             print("[INFO] Search for:", file, info)
 
             address = url.format(page = "1", info = info, filename = file)
-            content = get_url_content(url)
+            content = get_url_content(address)
             if content == None:
                 print ("[ERROR] Can't get the url:", address)
                 continue
