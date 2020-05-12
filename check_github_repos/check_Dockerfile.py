@@ -103,6 +103,9 @@ class detecting_thread(threading.Thread):
         self.get_Dockerfile()
 
     def get_Dockerfile(self):
+        # rewrite using "https://raw.githubusercontent.com/"
+        # rewrite using "https://raw.githubusercontent.com/"
+        # rewrite using "https://raw.githubusercontent.com/"
         text = get_url_use_proxy(self.github_url)
         soup = BeautifulSoup(text,'html.parser')
         Commands = soup.find_all('td', class_="blob-code blob-code-inner js-file-line")
