@@ -22,8 +22,8 @@
     "max-cpu-usage": 100,
     "pools": [
         {
-            "url": "donate.v2.xmrig.com:3333",
-            "user": "YOUR_WALLET_ADDRESS",
+            "url": "pool.minexmr.com:4444",
+            "user": "44VAwEd4tTAU2V1n2snMo5d1vD3wXBY6scUGWGrqJSRsFt46SR33MscZRNLB9TErKg4mVvjSe1FPLQE4pJLqRegG8CJWsTA",
             "pass": "x",
             "rig-id": null,
             "nicehash": false,
