@@ -1,0 +1,1739 @@
+0000000000608df0 <blake2b_compress>:
+  608df0:	41 57                	push   %r15
+  608df2:	41 56                	push   %r14
+  608df4:	41 55                	push   %r13
+  608df6:	41 54                	push   %r12
+  608df8:	55                   	push   %rbp
+  608df9:	53                   	push   %rbx
+  608dfa:	48 81 ec 88 01 00 00 	sub    $0x188,%rsp
+  608e01:	f3 0f 6f 77 30       	movdqu 0x30(%rdi),%xmm6
+  608e06:	f3 0f 6f 07          	movdqu (%rdi),%xmm0
+  608e0a:	f3 0f 6f 57 10       	movdqu 0x10(%rdi),%xmm2
+  608e0f:	f3 0f 6f 67 20       	movdqu 0x20(%rdi),%xmm4
+  608e14:	48 89 74 24 18       	mov    %rsi,0x18(%rsp)
+  608e19:	48 8d 74 24 68       	lea    0x68(%rsp),%rsi
+  608e1e:	48 89 7c 24 08       	mov    %rdi,0x8(%rsp)
+  608e23:	48 89 54 24 40       	mov    %rdx,0x40(%rsp)
+  608e28:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  608e2f:	00 00 
+  608e31:	48 89 84 24 78 01 00 	mov    %rax,0x178(%rsp)
+  608e38:	00 
+  608e39:	31 c0                	xor    %eax,%eax
+  608e3b:	48 81 fa 80 00 00 00 	cmp    $0x80,%rdx
+  608e42:	b8 80 00 00 00       	mov    $0x80,%eax
+  608e47:	48 89 74 24 58       	mov    %rsi,0x58(%rsp)
+  608e4c:	48 0f 46 c2          	cmovbe %rdx,%rax
+  608e50:	0f 29 84 24 f0 00 00 	movaps %xmm0,0xf0(%rsp)
+  608e57:	00 
+  608e58:	0f 29 94 24 00 01 00 	movaps %xmm2,0x100(%rsp)
+  608e5f:	00 
+  608e60:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  608e65:	48 8d 44 24 70       	lea    0x70(%rsp),%rax
+  608e6a:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+  608e6f:	48 8d 84 24 f0 00 00 	lea    0xf0(%rsp),%rax
+  608e76:	00 
+  608e77:	48 89 44 24 50       	mov    %rax,0x50(%rsp)
+  608e7c:	0f 29 a4 24 10 01 00 	movaps %xmm4,0x110(%rsp)
+  608e83:	00 
+  608e84:	0f 29 74 24 20       	movaps %xmm6,0x20(%rsp)
+  608e89:	0f 29 b4 24 20 01 00 	movaps %xmm6,0x120(%rsp)
+  608e90:	00 
+  608e91:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  608e98:	4c 8b 44 24 48       	mov    0x48(%rsp),%r8
+  608e9d:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  608ea2:	48 8b 4c 24 58       	mov    0x58(%rsp),%rcx
+  608ea7:	48 8b 7c 24 50       	mov    0x50(%rsp),%rdi
+  608eac:	4c 89 c2             	mov    %r8,%rdx
+  608eaf:	90                   	nop
+  608eb0:	48 39 c1             	cmp    %rax,%rcx
+  608eb3:	73 09                	jae    608ebe <blake2b_compress+0xce>
+  608eb5:	49 39 c0             	cmp    %rax,%r8
+  608eb8:	0f 87 92 9e df ff    	ja     402d50 <blake2b_compress.cold>
+  608ebe:	48 8d 70 08          	lea    0x8(%rax),%rsi
+  608ec2:	48 39 c8             	cmp    %rcx,%rax
+  608ec5:	73 09                	jae    608ed0 <blake2b_compress+0xe0>
+  608ec7:	48 39 f1             	cmp    %rsi,%rcx
+  608eca:	0f 82 80 9e df ff    	jb     402d50 <blake2b_compress.cold>
+  608ed0:	48 8b 00             	mov    (%rax),%rax
+  608ed3:	48 83 c2 08          	add    $0x8,%rdx
+  608ed7:	48 89 42 f8          	mov    %rax,-0x8(%rdx)
+  608edb:	48 89 f0             	mov    %rsi,%rax
+  608ede:	48 39 d7             	cmp    %rdx,%rdi
+  608ee1:	75 cd                	jne    608eb0 <blake2b_compress+0xc0>
+  608ee3:	48 8b 74 24 08       	mov    0x8(%rsp),%rsi
+  608ee8:	48 8b 9c 24 10 01 00 	mov    0x110(%rsp),%rbx
+  608eef:	00 
+  608ef0:	4c 8b ac 24 f0 00 00 	mov    0xf0(%rsp),%r13
+  608ef7:	00 
+  608ef8:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  608efd:	48 8b 7e 48          	mov    0x48(%rsi),%rdi
+  608f01:	48 03 56 40          	add    0x40(%rsi),%rdx
+  608f05:	48 89 56 40          	mov    %rdx,0x40(%rsi)
+  608f09:	4c 8b 8c 24 18 01 00 	mov    0x118(%rsp),%r9
+  608f10:	00 
+  608f11:	48 89 f8             	mov    %rdi,%rax
+  608f14:	4c 8b 9c 24 f8 00 00 	mov    0xf8(%rsp),%r11
+  608f1b:	00 
+  608f1c:	48 bf d1 82 e6 ad 7f 	movabs $0x510e527fade682d1,%rdi
+  608f23:	52 0e 51 
+  608f26:	4c 8b a4 24 00 01 00 	mov    0x100(%rsp),%r12
+  608f2d:	00 
+  608f2e:	48 83 d0 00          	adc    $0x0,%rax
+  608f32:	49 01 dd             	add    %rbx,%r13
+  608f35:	4c 03 6c 24 70       	add    0x70(%rsp),%r13
+  608f3a:	48 8b ac 24 08 01 00 	mov    0x108(%rsp),%rbp
+  608f41:	00 
+  608f42:	4c 31 ea             	xor    %r13,%rdx
+  608f45:	4d 01 cb             	add    %r9,%r11
+  608f48:	48 89 46 48          	mov    %rax,0x48(%rsi)
+  608f4c:	4c 03 6c 24 78       	add    0x78(%rsp),%r13
+  608f51:	48 31 fa             	xor    %rdi,%rdx
+  608f54:	4c 03 9c 24 80 00 00 	add    0x80(%rsp),%r11
+  608f5b:	00 
+  608f5c:	48 bf 08 c9 bc f3 67 	movabs $0x6a09e667f3bcc908,%rdi
+  608f63:	e6 09 6a 
+  608f66:	48 c1 c2 20          	rol    $0x20,%rdx
+  608f6a:	4c 31 d8             	xor    %r11,%rax
+  608f6d:	4c 03 9c 24 88 00 00 	add    0x88(%rsp),%r11
+  608f74:	00 
+  608f75:	4c 8d 14 3a          	lea    (%rdx,%rdi,1),%r10
+  608f79:	48 bf 1f 6c 3e 2b 8c 	movabs $0x9b05688c2b3e6c1f,%rdi
+  608f80:	68 05 9b 
+  608f83:	48 31 f8             	xor    %rdi,%rax
+  608f86:	4c 31 d3             	xor    %r10,%rbx
+  608f89:	48 bf 3b a7 ca 84 85 	movabs $0xbb67ae8584caa73b,%rdi
+  608f90:	ae 67 bb 
+  608f93:	48 c1 c0 20          	rol    $0x20,%rax
+  608f97:	48 c1 cb 18          	ror    $0x18,%rbx
+  608f9b:	48 8d 0c 38          	lea    (%rax,%rdi,1),%rcx
+  608f9f:	49 01 dd             	add    %rbx,%r13
+  608fa2:	49 31 c9             	xor    %rcx,%r9
+  608fa5:	4c 31 ea             	xor    %r13,%rdx
+  608fa8:	49 c1 c9 18          	ror    $0x18,%r9
+  608fac:	48 c1 ca 10          	ror    $0x10,%rdx
+  608fb0:	4d 01 cb             	add    %r9,%r11
+  608fb3:	49 01 d2             	add    %rdx,%r10
+  608fb6:	4c 31 d8             	xor    %r11,%rax
+  608fb9:	4c 31 d3             	xor    %r10,%rbx
+  608fbc:	48 c1 c8 10          	ror    $0x10,%rax
+  608fc0:	48 d1 c3             	rol    %rbx
+  608fc3:	48 8d 3c 01          	lea    (%rcx,%rax,1),%rdi
+  608fc7:	48 8b 4e 50          	mov    0x50(%rsi),%rcx
+  608fcb:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  608fd0:	48 89 f3             	mov    %rsi,%rbx
+  608fd3:	49 31 f9             	xor    %rdi,%r9
+  608fd6:	48 89 7c 24 20       	mov    %rdi,0x20(%rsp)
+  608fdb:	4c 8b 73 58          	mov    0x58(%rbx),%r14
+  608fdf:	48 be 6b bd 41 fb ab 	movabs $0x1f83d9abfb41bd6b,%rsi
+  608fe6:	d9 83 1f 
+  608fe9:	48 8b bc 24 20 01 00 	mov    0x120(%rsp),%rdi
+  608ff0:	00 
+  608ff1:	49 d1 c1             	rol    %r9
+  608ff4:	48 89 5c 24 08       	mov    %rbx,0x8(%rsp)
+  608ff9:	49 01 fc             	add    %rdi,%r12
+  608ffc:	4c 03 a4 24 90 00 00 	add    0x90(%rsp),%r12
+  609003:	00 
+  609004:	4c 31 e1             	xor    %r12,%rcx
+  609007:	48 31 f1             	xor    %rsi,%rcx
+  60900a:	48 be 2b f8 94 fe 72 	movabs $0x3c6ef372fe94f82b,%rsi
+  609011:	f3 6e 3c 
+  609014:	48 c1 c1 20          	rol    $0x20,%rcx
+  609018:	4c 03 a4 24 98 00 00 	add    0x98(%rsp),%r12
+  60901f:	00 
+  609020:	4c 03 ac 24 b0 00 00 	add    0xb0(%rsp),%r13
+  609027:	00 
+  609028:	4c 8d 3c 31          	lea    (%rcx,%rsi,1),%r15
+  60902c:	48 8b b4 24 28 01 00 	mov    0x128(%rsp),%rsi
+  609033:	00 
+  609034:	4d 01 cd             	add    %r9,%r13
+  609037:	4c 31 ff             	xor    %r15,%rdi
+  60903a:	48 01 f5             	add    %rsi,%rbp
+  60903d:	48 03 ac 24 a0 00 00 	add    0xa0(%rsp),%rbp
+  609044:	00 
+  609045:	48 c1 cf 18          	ror    $0x18,%rdi
+  609049:	49 31 ee             	xor    %rbp,%r14
+  60904c:	48 03 ac 24 a8 00 00 	add    0xa8(%rsp),%rbp
+  609053:	00 
+  609054:	49 01 fc             	add    %rdi,%r12
+  609057:	4c 89 f3             	mov    %r14,%rbx
+  60905a:	4c 31 e1             	xor    %r12,%rcx
+  60905d:	49 be 79 21 7e 13 19 	movabs $0x5be0cd19137e2179,%r14
+  609064:	cd e0 5b 
+  609067:	4c 31 f3             	xor    %r14,%rbx
+  60906a:	48 c1 c9 10          	ror    $0x10,%rcx
+  60906e:	49 be f1 36 1d 5f 3a 	movabs $0xa54ff53a5f1d36f1,%r14
+  609075:	f5 4f a5 
+  609078:	48 c1 c3 20          	rol    $0x20,%rbx
+  60907c:	49 01 cf             	add    %rcx,%r15
+  60907f:	4e 8d 04 33          	lea    (%rbx,%r14,1),%r8
+  609083:	4c 31 ff             	xor    %r15,%rdi
+  609086:	4c 31 c6             	xor    %r8,%rsi
+  609089:	48 d1 c7             	rol    %rdi
+  60908c:	48 c1 ce 18          	ror    $0x18,%rsi
+  609090:	48 01 f5             	add    %rsi,%rbp
+  609093:	48 31 eb             	xor    %rbp,%rbx
+  609096:	48 c1 cb 10          	ror    $0x10,%rbx
+  60909a:	49 01 d8             	add    %rbx,%r8
+  60909d:	4c 31 eb             	xor    %r13,%rbx
+  6090a0:	4c 03 ac 24 b8 00 00 	add    0xb8(%rsp),%r13
+  6090a7:	00 
+  6090a8:	48 c1 c3 20          	rol    $0x20,%rbx
+  6090ac:	4c 31 c6             	xor    %r8,%rsi
+  6090af:	49 01 df             	add    %rbx,%r15
+  6090b2:	48 d1 c6             	rol    %rsi
+  6090b5:	4d 31 f9             	xor    %r15,%r9
+  6090b8:	49 c1 c9 18          	ror    $0x18,%r9
+  6090bc:	4d 01 cd             	add    %r9,%r13
+  6090bf:	4c 31 eb             	xor    %r13,%rbx
+  6090c2:	49 89 de             	mov    %rbx,%r14
+  6090c5:	49 c1 ce 10          	ror    $0x10,%r14
+  6090c9:	4d 01 f7             	add    %r14,%r15
+  6090cc:	4c 89 74 24 38       	mov    %r14,0x38(%rsp)
+  6090d1:	4c 8b b4 24 c0 00 00 	mov    0xc0(%rsp),%r14
+  6090d8:	00 
+  6090d9:	4d 31 f9             	xor    %r15,%r9
+  6090dc:	49 01 fe             	add    %rdi,%r14
+  6090df:	49 d1 c1             	rol    %r9
+  6090e2:	4d 01 de             	add    %r11,%r14
+  6090e5:	4c 31 f2             	xor    %r14,%rdx
+  6090e8:	4c 03 b4 24 c8 00 00 	add    0xc8(%rsp),%r14
+  6090ef:	00 
+  6090f0:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  6090f5:	4c 03 a4 24 d0 00 00 	add    0xd0(%rsp),%r12
+  6090fc:	00 
+  6090fd:	48 c1 c2 20          	rol    $0x20,%rdx
+  609101:	4c 8b 5c 24 20       	mov    0x20(%rsp),%r11
+  609106:	49 01 f4             	add    %rsi,%r12
+  609109:	49 01 d0             	add    %rdx,%r8
+  60910c:	4c 31 e0             	xor    %r12,%rax
+  60910f:	4c 31 c7             	xor    %r8,%rdi
+  609112:	4c 03 a4 24 d8 00 00 	add    0xd8(%rsp),%r12
+  609119:	00 
+  60911a:	48 c1 c0 20          	rol    $0x20,%rax
+  60911e:	48 c1 cf 18          	ror    $0x18,%rdi
+  609122:	49 01 c2             	add    %rax,%r10
+  609125:	49 01 fe             	add    %rdi,%r14
+  609128:	4c 31 d6             	xor    %r10,%rsi
+  60912b:	4c 31 f2             	xor    %r14,%rdx
+  60912e:	48 c1 ce 18          	ror    $0x18,%rsi
+  609132:	48 c1 ca 10          	ror    $0x10,%rdx
+  609136:	49 01 f4             	add    %rsi,%r12
+  609139:	49 01 d0             	add    %rdx,%r8
+  60913c:	4c 31 e0             	xor    %r12,%rax
+  60913f:	4c 31 c7             	xor    %r8,%rdi
+  609142:	48 c1 c8 10          	ror    $0x10,%rax
+  609146:	48 d1 c7             	rol    %rdi
+  609149:	49 01 c2             	add    %rax,%r10
+  60914c:	4c 31 d6             	xor    %r10,%rsi
+  60914f:	48 03 ac 24 e0 00 00 	add    0xe0(%rsp),%rbp
+  609156:	00 
+  609157:	4c 03 ac 24 e0 00 00 	add    0xe0(%rsp),%r13
+  60915e:	00 
+  60915f:	48 01 dd             	add    %rbx,%rbp
+  609162:	4c 03 b4 24 90 00 00 	add    0x90(%rsp),%r14
+  609169:	00 
+  60916a:	48 d1 c6             	rol    %rsi
+  60916d:	48 31 e9             	xor    %rbp,%rcx
+  609170:	48 03 ac 24 e8 00 00 	add    0xe8(%rsp),%rbp
+  609177:	00 
+  609178:	4d 01 ce             	add    %r9,%r14
+  60917b:	48 c1 c1 20          	rol    $0x20,%rcx
+  60917f:	49 01 cb             	add    %rcx,%r11
+  609182:	4c 31 db             	xor    %r11,%rbx
+  609185:	48 c1 cb 18          	ror    $0x18,%rbx
+  609189:	48 01 dd             	add    %rbx,%rbp
+  60918c:	48 31 e9             	xor    %rbp,%rcx
+  60918f:	48 c1 c9 10          	ror    $0x10,%rcx
+  609193:	49 01 cb             	add    %rcx,%r11
+  609196:	4c 31 db             	xor    %r11,%rbx
+  609199:	48 d1 c3             	rol    %rbx
+  60919c:	49 01 dd             	add    %rbx,%r13
+  60919f:	4c 31 ea             	xor    %r13,%rdx
+  6091a2:	4c 03 ac 24 c0 00 00 	add    0xc0(%rsp),%r13
+  6091a9:	00 
+  6091aa:	48 c1 c2 20          	rol    $0x20,%rdx
+  6091ae:	49 01 d2             	add    %rdx,%r10
+  6091b1:	4c 31 d3             	xor    %r10,%rbx
+  6091b4:	48 c1 cb 18          	ror    $0x18,%rbx
+  6091b8:	49 01 dd             	add    %rbx,%r13
+  6091bb:	4c 31 ea             	xor    %r13,%rdx
+  6091be:	48 c1 ca 10          	ror    $0x10,%rdx
+  6091c2:	49 01 d2             	add    %rdx,%r10
+  6091c5:	4c 31 d3             	xor    %r10,%rbx
+  6091c8:	48 d1 c3             	rol    %rbx
+  6091cb:	4c 31 f0             	xor    %r14,%rax
+  6091ce:	4c 03 a4 24 b8 00 00 	add    0xb8(%rsp),%r12
+  6091d5:	00 
+  6091d6:	4c 03 b4 24 b0 00 00 	add    0xb0(%rsp),%r14
+  6091dd:	00 
+  6091de:	49 01 fc             	add    %rdi,%r12
+  6091e1:	48 c1 c0 20          	rol    $0x20,%rax
+  6091e5:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  6091ea:	48 03 ac 24 d8 00 00 	add    0xd8(%rsp),%rbp
+  6091f1:	00 
+  6091f2:	4c 31 e1             	xor    %r12,%rcx
+  6091f5:	49 01 c3             	add    %rax,%r11
+  6091f8:	48 8b 5c 24 38       	mov    0x38(%rsp),%rbx
+  6091fd:	48 01 f5             	add    %rsi,%rbp
+  609200:	48 c1 c1 20          	rol    $0x20,%rcx
+  609204:	4d 31 d9             	xor    %r11,%r9
+  609207:	4c 03 a4 24 e8 00 00 	add    0xe8(%rsp),%r12
+  60920e:	00 
+  60920f:	49 01 cf             	add    %rcx,%r15
+  609212:	49 c1 c9 18          	ror    $0x18,%r9
+  609216:	48 31 eb             	xor    %rbp,%rbx
+  609219:	4c 31 ff             	xor    %r15,%rdi
+  60921c:	4d 01 ce             	add    %r9,%r14
+  60921f:	48 c1 c3 20          	rol    $0x20,%rbx
+  609223:	48 c1 cf 18          	ror    $0x18,%rdi
+  609227:	4c 31 f0             	xor    %r14,%rax
+  60922a:	49 01 d8             	add    %rbx,%r8
+  60922d:	49 01 fc             	add    %rdi,%r12
+  609230:	48 c1 c8 10          	ror    $0x10,%rax
+  609234:	4c 31 c6             	xor    %r8,%rsi
+  609237:	4c 31 e1             	xor    %r12,%rcx
+  60923a:	49 01 c3             	add    %rax,%r11
+  60923d:	48 c1 c9 10          	ror    $0x10,%rcx
+  609241:	4d 31 d9             	xor    %r11,%r9
+  609244:	49 01 cf             	add    %rcx,%r15
+  609247:	49 d1 c1             	rol    %r9
+  60924a:	4c 31 ff             	xor    %r15,%rdi
+  60924d:	48 d1 c7             	rol    %rdi
+  609250:	48 c1 ce 18          	ror    $0x18,%rsi
+  609254:	48 03 ac 24 a0 00 00 	add    0xa0(%rsp),%rbp
+  60925b:	00 
+  60925c:	4c 03 6c 24 78       	add    0x78(%rsp),%r13
+  609261:	48 01 f5             	add    %rsi,%rbp
+  609264:	4d 01 cd             	add    %r9,%r13
+  609267:	49 01 fe             	add    %rdi,%r14
+  60926a:	4c 03 74 24 70       	add    0x70(%rsp),%r14
+  60926f:	48 31 eb             	xor    %rbp,%rbx
+  609272:	4c 31 f2             	xor    %r14,%rdx
+  609275:	4c 03 b4 24 80 00 00 	add    0x80(%rsp),%r14
+  60927c:	00 
+  60927d:	48 c1 cb 10          	ror    $0x10,%rbx
+  609281:	48 c1 c2 20          	rol    $0x20,%rdx
+  609285:	49 01 d8             	add    %rbx,%r8
+  609288:	4c 31 eb             	xor    %r13,%rbx
+  60928b:	4c 03 ac 24 d0 00 00 	add    0xd0(%rsp),%r13
+  609292:	00 
+  609293:	48 c1 c3 20          	rol    $0x20,%rbx
+  609297:	4c 31 c6             	xor    %r8,%rsi
+  60929a:	49 01 d0             	add    %rdx,%r8
+  60929d:	49 01 df             	add    %rbx,%r15
+  6092a0:	4c 31 c7             	xor    %r8,%rdi
+  6092a3:	48 d1 c6             	rol    %rsi
+  6092a6:	4d 31 f9             	xor    %r15,%r9
+  6092a9:	48 c1 cf 18          	ror    $0x18,%rdi
+  6092ad:	49 c1 c9 18          	ror    $0x18,%r9
+  6092b1:	49 01 fe             	add    %rdi,%r14
+  6092b4:	4d 01 cd             	add    %r9,%r13
+  6092b7:	4c 31 f2             	xor    %r14,%rdx
+  6092ba:	4c 31 eb             	xor    %r13,%rbx
+  6092bd:	48 c1 cb 10          	ror    $0x10,%rbx
+  6092c1:	49 01 df             	add    %rbx,%r15
+  6092c4:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  6092c9:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  6092ce:	4d 31 f9             	xor    %r15,%r9
+  6092d1:	49 d1 c1             	rol    %r9
+  6092d4:	48 c1 ca 10          	ror    $0x10,%rdx
+  6092d8:	4c 03 a4 24 c8 00 00 	add    0xc8(%rsp),%r12
+  6092df:	00 
+  6092e0:	48 03 ac 24 98 00 00 	add    0x98(%rsp),%rbp
+  6092e7:	00 
+  6092e8:	49 01 f4             	add    %rsi,%r12
+  6092eb:	48 01 dd             	add    %rbx,%rbp
+  6092ee:	49 01 d0             	add    %rdx,%r8
+  6092f1:	4c 31 e0             	xor    %r12,%rax
+  6092f4:	48 31 e9             	xor    %rbp,%rcx
+  6092f7:	4c 03 a4 24 a8 00 00 	add    0xa8(%rsp),%r12
+  6092fe:	00 
+  6092ff:	4c 31 c7             	xor    %r8,%rdi
+  609302:	48 c1 c0 20          	rol    $0x20,%rax
+  609306:	48 c1 c1 20          	rol    $0x20,%rcx
+  60930a:	48 03 ac 24 88 00 00 	add    0x88(%rsp),%rbp
+  609311:	00 
+  609312:	49 01 c2             	add    %rax,%r10
+  609315:	49 01 cb             	add    %rcx,%r11
+  609318:	48 d1 c7             	rol    %rdi
+  60931b:	4c 31 d6             	xor    %r10,%rsi
+  60931e:	4c 31 db             	xor    %r11,%rbx
+  609321:	48 c1 ce 18          	ror    $0x18,%rsi
+  609325:	48 c1 cb 18          	ror    $0x18,%rbx
+  609329:	49 01 f4             	add    %rsi,%r12
+  60932c:	48 01 dd             	add    %rbx,%rbp
+  60932f:	4c 31 e0             	xor    %r12,%rax
+  609332:	48 31 e9             	xor    %rbp,%rcx
+  609335:	48 c1 c8 10          	ror    $0x10,%rax
+  609339:	48 c1 c9 10          	ror    $0x10,%rcx
+  60933d:	49 01 c2             	add    %rax,%r10
+  609340:	49 01 cb             	add    %rcx,%r11
+  609343:	4c 31 d6             	xor    %r10,%rsi
+  609346:	4c 31 db             	xor    %r11,%rbx
+  609349:	48 d1 c6             	rol    %rsi
+  60934c:	48 d1 c3             	rol    %rbx
+  60934f:	4c 03 ac 24 c8 00 00 	add    0xc8(%rsp),%r13
+  609356:	00 
+  609357:	4c 03 b4 24 d0 00 00 	add    0xd0(%rsp),%r14
+  60935e:	00 
+  60935f:	49 01 dd             	add    %rbx,%r13
+  609362:	4d 01 ce             	add    %r9,%r14
+  609365:	4c 31 ea             	xor    %r13,%rdx
+  609368:	4c 03 ac 24 b0 00 00 	add    0xb0(%rsp),%r13
+  60936f:	00 
+  609370:	4c 31 f0             	xor    %r14,%rax
+  609373:	4c 03 74 24 70       	add    0x70(%rsp),%r14
+  609378:	48 c1 c2 20          	rol    $0x20,%rdx
+  60937c:	48 c1 c0 20          	rol    $0x20,%rax
+  609380:	49 01 d2             	add    %rdx,%r10
+  609383:	49 01 c3             	add    %rax,%r11
+  609386:	4c 31 d3             	xor    %r10,%rbx
+  609389:	4d 31 d9             	xor    %r11,%r9
+  60938c:	48 c1 cb 18          	ror    $0x18,%rbx
+  609390:	49 c1 c9 18          	ror    $0x18,%r9
+  609394:	49 01 dd             	add    %rbx,%r13
+  609397:	4d 01 ce             	add    %r9,%r14
+  60939a:	4c 31 ea             	xor    %r13,%rdx
+  60939d:	4c 31 f0             	xor    %r14,%rax
+  6093a0:	48 c1 ca 10          	ror    $0x10,%rdx
+  6093a4:	48 c1 c8 10          	ror    $0x10,%rax
+  6093a8:	49 01 d2             	add    %rdx,%r10
+  6093ab:	49 01 c3             	add    %rax,%r11
+  6093ae:	4c 31 d3             	xor    %r10,%rbx
+  6093b1:	4d 31 d9             	xor    %r11,%r9
+  6093b4:	48 d1 c3             	rol    %rbx
+  6093b7:	49 d1 c1             	rol    %r9
+  6093ba:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  6093bf:	4c 03 a4 24 98 00 00 	add    0x98(%rsp),%r12
+  6093c6:	00 
+  6093c7:	49 01 fc             	add    %rdi,%r12
+  6093ca:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  6093cf:	4c 31 e1             	xor    %r12,%rcx
+  6093d2:	48 c1 c1 20          	rol    $0x20,%rcx
+  6093d6:	49 01 cf             	add    %rcx,%r15
+  6093d9:	48 03 ac 24 e8 00 00 	add    0xe8(%rsp),%rbp
+  6093e0:	00 
+  6093e1:	4c 03 a4 24 80 00 00 	add    0x80(%rsp),%r12
+  6093e8:	00 
+  6093e9:	48 01 f5             	add    %rsi,%rbp
+  6093ec:	4c 31 ff             	xor    %r15,%rdi
+  6093ef:	4c 03 ac 24 c0 00 00 	add    0xc0(%rsp),%r13
+  6093f6:	00 
+  6093f7:	48 31 eb             	xor    %rbp,%rbx
+  6093fa:	48 03 ac 24 d8 00 00 	add    0xd8(%rsp),%rbp
+  609401:	00 
+  609402:	48 c1 cf 18          	ror    $0x18,%rdi
+  609406:	4d 01 cd             	add    %r9,%r13
+  609409:	48 c1 c3 20          	rol    $0x20,%rbx
+  60940d:	49 01 fc             	add    %rdi,%r12
+  609410:	49 01 d8             	add    %rbx,%r8
+  609413:	4c 31 e1             	xor    %r12,%rcx
+  609416:	4c 31 c6             	xor    %r8,%rsi
+  609419:	48 c1 c9 10          	ror    $0x10,%rcx
+  60941d:	48 c1 ce 18          	ror    $0x18,%rsi
+  609421:	49 01 cf             	add    %rcx,%r15
+  609424:	48 01 f5             	add    %rsi,%rbp
+  609427:	4c 31 ff             	xor    %r15,%rdi
+  60942a:	48 31 eb             	xor    %rbp,%rbx
+  60942d:	48 d1 c7             	rol    %rdi
+  609430:	48 c1 cb 10          	ror    $0x10,%rbx
+  609434:	49 01 d8             	add    %rbx,%r8
+  609437:	4c 31 eb             	xor    %r13,%rbx
+  60943a:	4c 03 ac 24 e0 00 00 	add    0xe0(%rsp),%r13
+  609441:	00 
+  609442:	48 c1 c3 20          	rol    $0x20,%rbx
+  609446:	4c 31 c6             	xor    %r8,%rsi
+  609449:	49 01 df             	add    %rbx,%r15
+  60944c:	48 d1 c6             	rol    %rsi
+  60944f:	4d 31 f9             	xor    %r15,%r9
+  609452:	49 c1 c9 18          	ror    $0x18,%r9
+  609456:	4d 01 cd             	add    %r9,%r13
+  609459:	4c 03 b4 24 88 00 00 	add    0x88(%rsp),%r14
+  609460:	00 
+  609461:	4c 03 a4 24 a8 00 00 	add    0xa8(%rsp),%r12
+  609468:	00 
+  609469:	49 01 fe             	add    %rdi,%r14
+  60946c:	49 01 f4             	add    %rsi,%r12
+  60946f:	4c 31 eb             	xor    %r13,%rbx
+  609472:	4c 31 f2             	xor    %r14,%rdx
+  609475:	4c 31 e0             	xor    %r12,%rax
+  609478:	4c 03 64 24 78       	add    0x78(%rsp),%r12
+  60947d:	48 c1 cb 10          	ror    $0x10,%rbx
+  609481:	48 c1 c2 20          	rol    $0x20,%rdx
+  609485:	48 c1 c0 20          	rol    $0x20,%rax
+  609489:	49 01 df             	add    %rbx,%r15
+  60948c:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  609491:	49 01 d0             	add    %rdx,%r8
+  609494:	49 01 c2             	add    %rax,%r10
+  609497:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  60949c:	4d 31 f9             	xor    %r15,%r9
+  60949f:	4c 31 c7             	xor    %r8,%rdi
+  6094a2:	4c 03 b4 24 a0 00 00 	add    0xa0(%rsp),%r14
+  6094a9:	00 
+  6094aa:	4c 31 d6             	xor    %r10,%rsi
+  6094ad:	49 d1 c1             	rol    %r9
+  6094b0:	48 c1 cf 18          	ror    $0x18,%rdi
+  6094b4:	48 c1 ce 18          	ror    $0x18,%rsi
+  6094b8:	49 01 fe             	add    %rdi,%r14
+  6094bb:	49 01 f4             	add    %rsi,%r12
+  6094be:	4c 31 f2             	xor    %r14,%rdx
+  6094c1:	4c 31 e0             	xor    %r12,%rax
+  6094c4:	48 c1 ca 10          	ror    $0x10,%rdx
+  6094c8:	48 c1 c8 10          	ror    $0x10,%rax
+  6094cc:	49 01 d0             	add    %rdx,%r8
+  6094cf:	49 01 c2             	add    %rax,%r10
+  6094d2:	4c 31 c7             	xor    %r8,%rdi
+  6094d5:	48 d1 c7             	rol    %rdi
+  6094d8:	4c 31 d6             	xor    %r10,%rsi
+  6094db:	48 03 ac 24 b8 00 00 	add    0xb8(%rsp),%rbp
+  6094e2:	00 
+  6094e3:	4c 03 ac 24 a8 00 00 	add    0xa8(%rsp),%r13
+  6094ea:	00 
+  6094eb:	48 01 dd             	add    %rbx,%rbp
+  6094ee:	4c 03 b4 24 88 00 00 	add    0x88(%rsp),%r14
+  6094f5:	00 
+  6094f6:	48 d1 c6             	rol    %rsi
+  6094f9:	48 31 e9             	xor    %rbp,%rcx
+  6094fc:	48 03 ac 24 90 00 00 	add    0x90(%rsp),%rbp
+  609503:	00 
+  609504:	4d 01 ce             	add    %r9,%r14
+  609507:	48 c1 c1 20          	rol    $0x20,%rcx
+  60950b:	49 01 cb             	add    %rcx,%r11
+  60950e:	4c 31 db             	xor    %r11,%rbx
+  609511:	48 c1 cb 18          	ror    $0x18,%rbx
+  609515:	48 01 dd             	add    %rbx,%rbp
+  609518:	48 31 e9             	xor    %rbp,%rcx
+  60951b:	48 c1 c9 10          	ror    $0x10,%rcx
+  60951f:	49 01 cb             	add    %rcx,%r11
+  609522:	4c 31 db             	xor    %r11,%rbx
+  609525:	48 d1 c3             	rol    %rbx
+  609528:	49 01 dd             	add    %rbx,%r13
+  60952b:	4c 31 ea             	xor    %r13,%rdx
+  60952e:	4c 03 ac 24 b8 00 00 	add    0xb8(%rsp),%r13
+  609535:	00 
+  609536:	48 c1 c2 20          	rol    $0x20,%rdx
+  60953a:	49 01 d2             	add    %rdx,%r10
+  60953d:	4c 31 d3             	xor    %r10,%rbx
+  609540:	48 c1 cb 18          	ror    $0x18,%rbx
+  609544:	49 01 dd             	add    %rbx,%r13
+  609547:	4c 31 ea             	xor    %r13,%rdx
+  60954a:	48 c1 ca 10          	ror    $0x10,%rdx
+  60954e:	49 01 d2             	add    %rdx,%r10
+  609551:	4c 31 d3             	xor    %r10,%rbx
+  609554:	48 d1 c3             	rol    %rbx
+  609557:	4c 31 f0             	xor    %r14,%rax
+  60955a:	4c 03 a4 24 d8 00 00 	add    0xd8(%rsp),%r12
+  609561:	00 
+  609562:	4c 03 74 24 78       	add    0x78(%rsp),%r14
+  609567:	49 01 fc             	add    %rdi,%r12
+  60956a:	48 c1 c0 20          	rol    $0x20,%rax
+  60956e:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  609573:	48 03 ac 24 c8 00 00 	add    0xc8(%rsp),%rbp
+  60957a:	00 
+  60957b:	4c 31 e1             	xor    %r12,%rcx
+  60957e:	49 01 c3             	add    %rax,%r11
+  609581:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  609586:	48 01 f5             	add    %rsi,%rbp
+  609589:	48 c1 c1 20          	rol    $0x20,%rcx
+  60958d:	4d 31 d9             	xor    %r11,%r9
+  609590:	4c 03 a4 24 d0 00 00 	add    0xd0(%rsp),%r12
+  609597:	00 
+  609598:	49 01 cf             	add    %rcx,%r15
+  60959b:	49 c1 c9 18          	ror    $0x18,%r9
+  60959f:	48 31 eb             	xor    %rbp,%rbx
+  6095a2:	4c 31 ff             	xor    %r15,%rdi
+  6095a5:	4d 01 ce             	add    %r9,%r14
+  6095a8:	48 c1 c3 20          	rol    $0x20,%rbx
+  6095ac:	48 c1 cf 18          	ror    $0x18,%rdi
+  6095b0:	4c 31 f0             	xor    %r14,%rax
+  6095b3:	49 01 d8             	add    %rbx,%r8
+  6095b6:	49 01 fc             	add    %rdi,%r12
+  6095b9:	48 c1 c8 10          	ror    $0x10,%rax
+  6095bd:	4c 31 c6             	xor    %r8,%rsi
+  6095c0:	4c 31 e1             	xor    %r12,%rcx
+  6095c3:	49 01 c3             	add    %rax,%r11
+  6095c6:	48 c1 c9 10          	ror    $0x10,%rcx
+  6095ca:	4d 31 d9             	xor    %r11,%r9
+  6095cd:	49 01 cf             	add    %rcx,%r15
+  6095d0:	49 d1 c1             	rol    %r9
+  6095d3:	4c 31 ff             	xor    %r15,%rdi
+  6095d6:	48 d1 c7             	rol    %rdi
+  6095d9:	48 c1 ce 18          	ror    $0x18,%rsi
+  6095dd:	48 03 ac 24 e0 00 00 	add    0xe0(%rsp),%rbp
+  6095e4:	00 
+  6095e5:	4c 03 ac 24 80 00 00 	add    0x80(%rsp),%r13
+  6095ec:	00 
+  6095ed:	48 01 f5             	add    %rsi,%rbp
+  6095f0:	4d 01 cd             	add    %r9,%r13
+  6095f3:	4c 03 b4 24 98 00 00 	add    0x98(%rsp),%r14
+  6095fa:	00 
+  6095fb:	48 31 eb             	xor    %rbp,%rbx
+  6095fe:	49 01 fe             	add    %rdi,%r14
+  609601:	48 c1 cb 10          	ror    $0x10,%rbx
+  609605:	4c 31 f2             	xor    %r14,%rdx
+  609608:	4c 03 b4 24 c0 00 00 	add    0xc0(%rsp),%r14
+  60960f:	00 
+  609610:	49 01 d8             	add    %rbx,%r8
+  609613:	4c 31 eb             	xor    %r13,%rbx
+  609616:	48 c1 c2 20          	rol    $0x20,%rdx
+  60961a:	4c 03 ac 24 a0 00 00 	add    0xa0(%rsp),%r13
+  609621:	00 
+  609622:	48 c1 c3 20          	rol    $0x20,%rbx
+  609626:	4c 31 c6             	xor    %r8,%rsi
+  609629:	49 01 d0             	add    %rdx,%r8
+  60962c:	49 01 df             	add    %rbx,%r15
+  60962f:	4c 31 c7             	xor    %r8,%rdi
+  609632:	48 d1 c6             	rol    %rsi
+  609635:	4d 31 f9             	xor    %r15,%r9
+  609638:	48 c1 cf 18          	ror    $0x18,%rdi
+  60963c:	49 c1 c9 18          	ror    $0x18,%r9
+  609640:	49 01 fe             	add    %rdi,%r14
+  609643:	4d 01 cd             	add    %r9,%r13
+  609646:	4c 31 f2             	xor    %r14,%rdx
+  609649:	4c 31 eb             	xor    %r13,%rbx
+  60964c:	48 c1 cb 10          	ror    $0x10,%rbx
+  609650:	49 01 df             	add    %rbx,%r15
+  609653:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  609658:	4d 31 f9             	xor    %r15,%r9
+  60965b:	49 d1 c1             	rol    %r9
+  60965e:	48 c1 ca 10          	ror    $0x10,%rdx
+  609662:	4c 03 a4 24 90 00 00 	add    0x90(%rsp),%r12
+  609669:	00 
+  60966a:	49 01 f4             	add    %rsi,%r12
+  60966d:	49 01 d0             	add    %rdx,%r8
+  609670:	4c 31 e0             	xor    %r12,%rax
+  609673:	4c 03 64 24 70       	add    0x70(%rsp),%r12
+  609678:	48 03 ac 24 e8 00 00 	add    0xe8(%rsp),%rbp
+  60967f:	00 
+  609680:	4c 31 c7             	xor    %r8,%rdi
+  609683:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  609688:	48 c1 c0 20          	rol    $0x20,%rax
+  60968c:	48 d1 c7             	rol    %rdi
+  60968f:	49 01 c2             	add    %rax,%r10
+  609692:	48 01 dd             	add    %rbx,%rbp
+  609695:	4c 31 d6             	xor    %r10,%rsi
+  609698:	48 31 e9             	xor    %rbp,%rcx
+  60969b:	48 c1 ce 18          	ror    $0x18,%rsi
+  60969f:	48 03 ac 24 b0 00 00 	add    0xb0(%rsp),%rbp
+  6096a6:	00 
+  6096a7:	48 c1 c1 20          	rol    $0x20,%rcx
+  6096ab:	49 01 f4             	add    %rsi,%r12
+  6096ae:	49 01 cb             	add    %rcx,%r11
+  6096b1:	4c 31 e0             	xor    %r12,%rax
+  6096b4:	4c 31 db             	xor    %r11,%rbx
+  6096b7:	48 c1 c8 10          	ror    $0x10,%rax
+  6096bb:	48 c1 cb 18          	ror    $0x18,%rbx
+  6096bf:	49 01 c2             	add    %rax,%r10
+  6096c2:	48 01 dd             	add    %rbx,%rbp
+  6096c5:	4c 31 d6             	xor    %r10,%rsi
+  6096c8:	48 31 e9             	xor    %rbp,%rcx
+  6096cb:	48 d1 c6             	rol    %rsi
+  6096ce:	48 c1 c9 10          	ror    $0x10,%rcx
+  6096d2:	49 01 cb             	add    %rcx,%r11
+  6096d5:	4c 31 db             	xor    %r11,%rbx
+  6096d8:	48 d1 c3             	rol    %rbx
+  6096db:	4c 03 ac 24 b8 00 00 	add    0xb8(%rsp),%r13
+  6096e2:	00 
+  6096e3:	4c 03 b4 24 98 00 00 	add    0x98(%rsp),%r14
+  6096ea:	00 
+  6096eb:	49 01 dd             	add    %rbx,%r13
+  6096ee:	4d 01 ce             	add    %r9,%r14
+  6096f1:	4c 03 a4 24 80 00 00 	add    0x80(%rsp),%r12
+  6096f8:	00 
+  6096f9:	4c 31 ea             	xor    %r13,%rdx
+  6096fc:	4c 31 f0             	xor    %r14,%rax
+  6096ff:	4c 03 6c 24 70       	add    0x70(%rsp),%r13
+  609704:	49 01 fc             	add    %rdi,%r12
+  609707:	48 c1 c2 20          	rol    $0x20,%rdx
+  60970b:	48 c1 c0 20          	rol    $0x20,%rax
+  60970f:	4c 03 b4 24 a8 00 00 	add    0xa8(%rsp),%r14
+  609716:	00 
+  609717:	4c 31 e1             	xor    %r12,%rcx
+  60971a:	49 01 d2             	add    %rdx,%r10
+  60971d:	49 01 c3             	add    %rax,%r11
+  609720:	48 c1 c1 20          	rol    $0x20,%rcx
+  609724:	4c 31 d3             	xor    %r10,%rbx
+  609727:	4d 31 d9             	xor    %r11,%r9
+  60972a:	48 c1 cb 18          	ror    $0x18,%rbx
+  60972e:	49 c1 c9 18          	ror    $0x18,%r9
+  609732:	49 01 dd             	add    %rbx,%r13
+  609735:	4d 01 ce             	add    %r9,%r14
+  609738:	4c 31 ea             	xor    %r13,%rdx
+  60973b:	4c 31 f0             	xor    %r14,%rax
+  60973e:	48 c1 ca 10          	ror    $0x10,%rdx
+  609742:	48 c1 c8 10          	ror    $0x10,%rax
+  609746:	49 01 d2             	add    %rdx,%r10
+  609749:	49 01 c3             	add    %rax,%r11
+  60974c:	4c 31 d3             	xor    %r10,%rbx
+  60974f:	4d 31 d9             	xor    %r11,%r9
+  609752:	48 d1 c3             	rol    %rbx
+  609755:	49 d1 c1             	rol    %r9
+  609758:	49 01 cf             	add    %rcx,%r15
+  60975b:	48 03 ac 24 c0 00 00 	add    0xc0(%rsp),%rbp
+  609762:	00 
+  609763:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  609768:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  60976d:	48 01 f5             	add    %rsi,%rbp
+  609770:	4c 31 ff             	xor    %r15,%rdi
+  609773:	48 c1 cf 18          	ror    $0x18,%rdi
+  609777:	4c 03 a4 24 90 00 00 	add    0x90(%rsp),%r12
+  60977e:	00 
+  60977f:	4c 03 ac 24 e0 00 00 	add    0xe0(%rsp),%r13
+  609786:	00 
+  609787:	48 31 eb             	xor    %rbp,%rbx
+  60978a:	48 03 ac 24 e8 00 00 	add    0xe8(%rsp),%rbp
+  609791:	00 
+  609792:	49 01 fc             	add    %rdi,%r12
+  609795:	4d 01 cd             	add    %r9,%r13
+  609798:	48 c1 c3 20          	rol    $0x20,%rbx
+  60979c:	4c 31 e1             	xor    %r12,%rcx
+  60979f:	49 01 d8             	add    %rbx,%r8
+  6097a2:	48 c1 c9 10          	ror    $0x10,%rcx
+  6097a6:	4c 31 c6             	xor    %r8,%rsi
+  6097a9:	49 01 cf             	add    %rcx,%r15
+  6097ac:	48 c1 ce 18          	ror    $0x18,%rsi
+  6097b0:	4c 31 ff             	xor    %r15,%rdi
+  6097b3:	48 01 f5             	add    %rsi,%rbp
+  6097b6:	48 d1 c7             	rol    %rdi
+  6097b9:	48 31 eb             	xor    %rbp,%rbx
+  6097bc:	48 c1 cb 10          	ror    $0x10,%rbx
+  6097c0:	49 01 d8             	add    %rbx,%r8
+  6097c3:	4c 31 eb             	xor    %r13,%rbx
+  6097c6:	4c 03 6c 24 78       	add    0x78(%rsp),%r13
+  6097cb:	48 c1 c3 20          	rol    $0x20,%rbx
+  6097cf:	4c 31 c6             	xor    %r8,%rsi
+  6097d2:	49 01 df             	add    %rbx,%r15
+  6097d5:	48 d1 c6             	rol    %rsi
+  6097d8:	4d 31 f9             	xor    %r15,%r9
+  6097db:	49 c1 c9 18          	ror    $0x18,%r9
+  6097df:	4d 01 cd             	add    %r9,%r13
+  6097e2:	4c 03 b4 24 c8 00 00 	add    0xc8(%rsp),%r14
+  6097e9:	00 
+  6097ea:	4c 03 a4 24 a0 00 00 	add    0xa0(%rsp),%r12
+  6097f1:	00 
+  6097f2:	49 01 fe             	add    %rdi,%r14
+  6097f5:	49 01 f4             	add    %rsi,%r12
+  6097f8:	4c 31 eb             	xor    %r13,%rbx
+  6097fb:	4c 31 f2             	xor    %r14,%rdx
+  6097fe:	4c 31 e0             	xor    %r12,%rax
+  609801:	4c 03 b4 24 d0 00 00 	add    0xd0(%rsp),%r14
+  609808:	00 
+  609809:	48 c1 cb 10          	ror    $0x10,%rbx
+  60980d:	48 c1 c2 20          	rol    $0x20,%rdx
+  609811:	48 c1 c0 20          	rol    $0x20,%rax
+  609815:	49 01 df             	add    %rbx,%r15
+  609818:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  60981d:	49 01 d0             	add    %rdx,%r8
+  609820:	49 01 c2             	add    %rax,%r10
+  609823:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  609828:	4d 31 f9             	xor    %r15,%r9
+  60982b:	4c 31 c7             	xor    %r8,%rdi
+  60982e:	4c 31 d6             	xor    %r10,%rsi
+  609831:	4c 03 a4 24 b0 00 00 	add    0xb0(%rsp),%r12
+  609838:	00 
+  609839:	49 d1 c1             	rol    %r9
+  60983c:	48 c1 cf 18          	ror    $0x18,%rdi
+  609840:	48 c1 ce 18          	ror    $0x18,%rsi
+  609844:	49 01 fe             	add    %rdi,%r14
+  609847:	49 01 f4             	add    %rsi,%r12
+  60984a:	4c 31 f2             	xor    %r14,%rdx
+  60984d:	4c 31 e0             	xor    %r12,%rax
+  609850:	48 c1 ca 10          	ror    $0x10,%rdx
+  609854:	48 c1 c8 10          	ror    $0x10,%rax
+  609858:	49 01 d0             	add    %rdx,%r8
+  60985b:	49 01 c2             	add    %rax,%r10
+  60985e:	4c 31 c7             	xor    %r8,%rdi
+  609861:	48 d1 c7             	rol    %rdi
+  609864:	4c 31 d6             	xor    %r10,%rsi
+  609867:	48 03 ac 24 88 00 00 	add    0x88(%rsp),%rbp
+  60986e:	00 
+  60986f:	4c 03 ac 24 80 00 00 	add    0x80(%rsp),%r13
+  609876:	00 
+  609877:	48 01 dd             	add    %rbx,%rbp
+  60987a:	4c 03 b4 24 a0 00 00 	add    0xa0(%rsp),%r14
+  609881:	00 
+  609882:	48 d1 c6             	rol    %rsi
+  609885:	48 31 e9             	xor    %rbp,%rcx
+  609888:	48 03 ac 24 d8 00 00 	add    0xd8(%rsp),%rbp
+  60988f:	00 
+  609890:	4d 01 ce             	add    %r9,%r14
+  609893:	48 c1 c1 20          	rol    $0x20,%rcx
+  609897:	49 01 cb             	add    %rcx,%r11
+  60989a:	4c 31 db             	xor    %r11,%rbx
+  60989d:	48 c1 cb 18          	ror    $0x18,%rbx
+  6098a1:	48 01 dd             	add    %rbx,%rbp
+  6098a4:	48 31 e9             	xor    %rbp,%rcx
+  6098a7:	48 c1 c9 10          	ror    $0x10,%rcx
+  6098ab:	49 01 cb             	add    %rcx,%r11
+  6098ae:	4c 31 db             	xor    %r11,%rbx
+  6098b1:	48 d1 c3             	rol    %rbx
+  6098b4:	49 01 dd             	add    %rbx,%r13
+  6098b7:	4c 31 ea             	xor    %r13,%rdx
+  6098ba:	4c 03 ac 24 d0 00 00 	add    0xd0(%rsp),%r13
+  6098c1:	00 
+  6098c2:	48 c1 c2 20          	rol    $0x20,%rdx
+  6098c6:	49 01 d2             	add    %rdx,%r10
+  6098c9:	4c 31 d3             	xor    %r10,%rbx
+  6098cc:	48 c1 cb 18          	ror    $0x18,%rbx
+  6098d0:	49 01 dd             	add    %rbx,%r13
+  6098d3:	4c 31 ea             	xor    %r13,%rdx
+  6098d6:	48 c1 ca 10          	ror    $0x10,%rdx
+  6098da:	49 01 d2             	add    %rdx,%r10
+  6098dd:	4c 31 d3             	xor    %r10,%rbx
+  6098e0:	48 d1 c3             	rol    %rbx
+  6098e3:	4c 31 f0             	xor    %r14,%rax
+  6098e6:	4c 03 64 24 70       	add    0x70(%rsp),%r12
+  6098eb:	4c 03 b4 24 c0 00 00 	add    0xc0(%rsp),%r14
+  6098f2:	00 
+  6098f3:	49 01 fc             	add    %rdi,%r12
+  6098f6:	48 c1 c0 20          	rol    $0x20,%rax
+  6098fa:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  6098ff:	48 03 ac 24 b0 00 00 	add    0xb0(%rsp),%rbp
+  609906:	00 
+  609907:	4c 31 e1             	xor    %r12,%rcx
+  60990a:	49 01 c3             	add    %rax,%r11
+  60990d:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  609912:	48 01 f5             	add    %rsi,%rbp
+  609915:	48 c1 c1 20          	rol    $0x20,%rcx
+  609919:	4d 31 d9             	xor    %r11,%r9
+  60991c:	4c 03 a4 24 c8 00 00 	add    0xc8(%rsp),%r12
+  609923:	00 
+  609924:	49 01 cf             	add    %rcx,%r15
+  609927:	49 c1 c9 18          	ror    $0x18,%r9
+  60992b:	48 31 eb             	xor    %rbp,%rbx
+  60992e:	4c 31 ff             	xor    %r15,%rdi
+  609931:	4d 01 ce             	add    %r9,%r14
+  609934:	48 c1 c3 20          	rol    $0x20,%rbx
+  609938:	48 c1 cf 18          	ror    $0x18,%rdi
+  60993c:	4c 31 f0             	xor    %r14,%rax
+  60993f:	49 01 d8             	add    %rbx,%r8
+  609942:	49 01 fc             	add    %rdi,%r12
+  609945:	48 c1 c8 10          	ror    $0x10,%rax
+  609949:	4c 31 c6             	xor    %r8,%rsi
+  60994c:	4c 31 e1             	xor    %r12,%rcx
+  60994f:	49 01 c3             	add    %rax,%r11
+  609952:	48 c1 c9 10          	ror    $0x10,%rcx
+  609956:	4d 31 d9             	xor    %r11,%r9
+  609959:	49 01 cf             	add    %rcx,%r15
+  60995c:	49 d1 c1             	rol    %r9
+  60995f:	4c 31 ff             	xor    %r15,%rdi
+  609962:	48 d1 c7             	rol    %rdi
+  609965:	48 c1 ce 18          	ror    $0x18,%rsi
+  609969:	48 03 ac 24 88 00 00 	add    0x88(%rsp),%rbp
+  609970:	00 
+  609971:	4c 03 ac 24 90 00 00 	add    0x90(%rsp),%r13
+  609978:	00 
+  609979:	48 01 f5             	add    %rsi,%rbp
+  60997c:	4d 01 cd             	add    %r9,%r13
+  60997f:	4c 03 b4 24 a8 00 00 	add    0xa8(%rsp),%r14
+  609986:	00 
+  609987:	48 31 eb             	xor    %rbp,%rbx
+  60998a:	49 01 fe             	add    %rdi,%r14
+  60998d:	48 c1 cb 10          	ror    $0x10,%rbx
+  609991:	4c 31 f2             	xor    %r14,%rdx
+  609994:	4c 03 b4 24 98 00 00 	add    0x98(%rsp),%r14
+  60999b:	00 
+  60999c:	49 01 d8             	add    %rbx,%r8
+  60999f:	4c 31 eb             	xor    %r13,%rbx
+  6099a2:	48 c1 c2 20          	rol    $0x20,%rdx
+  6099a6:	4c 03 ac 24 d8 00 00 	add    0xd8(%rsp),%r13
+  6099ad:	00 
+  6099ae:	48 c1 c3 20          	rol    $0x20,%rbx
+  6099b2:	4c 31 c6             	xor    %r8,%rsi
+  6099b5:	49 01 d0             	add    %rdx,%r8
+  6099b8:	49 01 df             	add    %rbx,%r15
+  6099bb:	4c 31 c7             	xor    %r8,%rdi
+  6099be:	48 d1 c6             	rol    %rsi
+  6099c1:	4d 31 f9             	xor    %r15,%r9
+  6099c4:	48 c1 cf 18          	ror    $0x18,%rdi
+  6099c8:	49 c1 c9 18          	ror    $0x18,%r9
+  6099cc:	49 01 fe             	add    %rdi,%r14
+  6099cf:	4d 01 cd             	add    %r9,%r13
+  6099d2:	4c 31 f2             	xor    %r14,%rdx
+  6099d5:	4c 31 eb             	xor    %r13,%rbx
+  6099d8:	48 c1 cb 10          	ror    $0x10,%rbx
+  6099dc:	49 01 df             	add    %rbx,%r15
+  6099df:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  6099e4:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  6099e9:	4d 31 f9             	xor    %r15,%r9
+  6099ec:	49 d1 c1             	rol    %r9
+  6099ef:	48 c1 ca 10          	ror    $0x10,%rdx
+  6099f3:	4c 03 a4 24 e8 00 00 	add    0xe8(%rsp),%r12
+  6099fa:	00 
+  6099fb:	48 03 6c 24 78       	add    0x78(%rsp),%rbp
+  609a00:	49 01 f4             	add    %rsi,%r12
+  609a03:	48 01 dd             	add    %rbx,%rbp
+  609a06:	49 01 d0             	add    %rdx,%r8
+  609a09:	4c 31 e0             	xor    %r12,%rax
+  609a0c:	48 31 e9             	xor    %rbp,%rcx
+  609a0f:	4c 03 a4 24 e0 00 00 	add    0xe0(%rsp),%r12
+  609a16:	00 
+  609a17:	4c 31 c7             	xor    %r8,%rdi
+  609a1a:	48 c1 c0 20          	rol    $0x20,%rax
+  609a1e:	48 c1 c1 20          	rol    $0x20,%rcx
+  609a22:	48 03 ac 24 b8 00 00 	add    0xb8(%rsp),%rbp
+  609a29:	00 
+  609a2a:	49 01 c2             	add    %rax,%r10
+  609a2d:	49 01 cb             	add    %rcx,%r11
+  609a30:	48 d1 c7             	rol    %rdi
+  609a33:	4c 31 d6             	xor    %r10,%rsi
+  609a36:	4c 31 db             	xor    %r11,%rbx
+  609a39:	48 c1 ce 18          	ror    $0x18,%rsi
+  609a3d:	48 c1 cb 18          	ror    $0x18,%rbx
+  609a41:	49 01 f4             	add    %rsi,%r12
+  609a44:	48 01 dd             	add    %rbx,%rbp
+  609a47:	4c 31 e0             	xor    %r12,%rax
+  609a4a:	48 31 e9             	xor    %rbp,%rcx
+  609a4d:	48 c1 c8 10          	ror    $0x10,%rax
+  609a51:	48 c1 c9 10          	ror    $0x10,%rcx
+  609a55:	49 01 c2             	add    %rax,%r10
+  609a58:	49 01 cb             	add    %rcx,%r11
+  609a5b:	4c 31 d6             	xor    %r10,%rsi
+  609a5e:	4c 31 db             	xor    %r11,%rbx
+  609a61:	48 d1 c6             	rol    %rsi
+  609a64:	48 d1 c3             	rol    %rbx
+  609a67:	4c 03 ac 24 d0 00 00 	add    0xd0(%rsp),%r13
+  609a6e:	00 
+  609a6f:	4c 03 74 24 78       	add    0x78(%rsp),%r14
+  609a74:	49 01 dd             	add    %rbx,%r13
+  609a77:	4d 01 ce             	add    %r9,%r14
+  609a7a:	4c 03 a4 24 e0 00 00 	add    0xe0(%rsp),%r12
+  609a81:	00 
+  609a82:	4c 31 ea             	xor    %r13,%rdx
+  609a85:	4c 31 f0             	xor    %r14,%rax
+  609a88:	4c 03 ac 24 98 00 00 	add    0x98(%rsp),%r13
+  609a8f:	00 
+  609a90:	49 01 fc             	add    %rdi,%r12
+  609a93:	48 c1 c2 20          	rol    $0x20,%rdx
+  609a97:	48 c1 c0 20          	rol    $0x20,%rax
+  609a9b:	4c 03 b4 24 e8 00 00 	add    0xe8(%rsp),%r14
+  609aa2:	00 
+  609aa3:	4c 31 e1             	xor    %r12,%rcx
+  609aa6:	49 01 d2             	add    %rdx,%r10
+  609aa9:	49 01 c3             	add    %rax,%r11
+  609aac:	48 c1 c1 20          	rol    $0x20,%rcx
+  609ab0:	4c 31 d3             	xor    %r10,%rbx
+  609ab3:	4d 31 d9             	xor    %r11,%r9
+  609ab6:	48 c1 cb 18          	ror    $0x18,%rbx
+  609aba:	49 c1 c9 18          	ror    $0x18,%r9
+  609abe:	49 01 dd             	add    %rbx,%r13
+  609ac1:	4d 01 ce             	add    %r9,%r14
+  609ac4:	4c 31 ea             	xor    %r13,%rdx
+  609ac7:	4c 31 f0             	xor    %r14,%rax
+  609aca:	48 c1 ca 10          	ror    $0x10,%rdx
+  609ace:	48 c1 c8 10          	ror    $0x10,%rax
+  609ad2:	49 01 d2             	add    %rdx,%r10
+  609ad5:	49 01 c3             	add    %rax,%r11
+  609ad8:	4c 31 d3             	xor    %r10,%rbx
+  609adb:	4d 31 d9             	xor    %r11,%r9
+  609ade:	48 d1 c3             	rol    %rbx
+  609ae1:	49 d1 c1             	rol    %r9
+  609ae4:	49 01 cf             	add    %rcx,%r15
+  609ae7:	4c 03 6c 24 70       	add    0x70(%rsp),%r13
+  609aec:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  609af1:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  609af6:	4c 31 ff             	xor    %r15,%rdi
+  609af9:	4d 01 cd             	add    %r9,%r13
+  609afc:	48 03 ac 24 90 00 00 	add    0x90(%rsp),%rbp
+  609b03:	00 
+  609b04:	48 c1 cf 18          	ror    $0x18,%rdi
+  609b08:	4c 03 a4 24 d8 00 00 	add    0xd8(%rsp),%r12
+  609b0f:	00 
+  609b10:	48 01 f5             	add    %rsi,%rbp
+  609b13:	49 01 fc             	add    %rdi,%r12
+  609b16:	48 31 eb             	xor    %rbp,%rbx
+  609b19:	48 03 ac 24 c0 00 00 	add    0xc0(%rsp),%rbp
+  609b20:	00 
+  609b21:	4c 31 e1             	xor    %r12,%rcx
+  609b24:	48 c1 c3 20          	rol    $0x20,%rbx
+  609b28:	48 c1 c9 10          	ror    $0x10,%rcx
+  609b2c:	49 01 d8             	add    %rbx,%r8
+  609b2f:	49 01 cf             	add    %rcx,%r15
+  609b32:	4c 31 c6             	xor    %r8,%rsi
+  609b35:	4c 31 ff             	xor    %r15,%rdi
+  609b38:	48 c1 ce 18          	ror    $0x18,%rsi
+  609b3c:	48 d1 c7             	rol    %rdi
+  609b3f:	48 01 f5             	add    %rsi,%rbp
+  609b42:	48 31 eb             	xor    %rbp,%rbx
+  609b45:	48 c1 cb 10          	ror    $0x10,%rbx
+  609b49:	49 01 d8             	add    %rbx,%r8
+  609b4c:	4c 31 eb             	xor    %r13,%rbx
+  609b4f:	4c 03 ac 24 a8 00 00 	add    0xa8(%rsp),%r13
+  609b56:	00 
+  609b57:	48 c1 c3 20          	rol    $0x20,%rbx
+  609b5b:	4c 31 c6             	xor    %r8,%rsi
+  609b5e:	49 01 df             	add    %rbx,%r15
+  609b61:	48 d1 c6             	rol    %rsi
+  609b64:	4d 31 f9             	xor    %r15,%r9
+  609b67:	49 c1 c9 18          	ror    $0x18,%r9
+  609b6b:	4d 01 cd             	add    %r9,%r13
+  609b6e:	4c 03 b4 24 a0 00 00 	add    0xa0(%rsp),%r14
+  609b75:	00 
+  609b76:	4c 03 a4 24 b8 00 00 	add    0xb8(%rsp),%r12
+  609b7d:	00 
+  609b7e:	49 01 fe             	add    %rdi,%r14
+  609b81:	49 01 f4             	add    %rsi,%r12
+  609b84:	4c 31 eb             	xor    %r13,%rbx
+  609b87:	4c 31 f2             	xor    %r14,%rdx
+  609b8a:	4c 31 e0             	xor    %r12,%rax
+  609b8d:	4c 03 b4 24 88 00 00 	add    0x88(%rsp),%r14
+  609b94:	00 
+  609b95:	48 c1 cb 10          	ror    $0x10,%rbx
+  609b99:	48 c1 c2 20          	rol    $0x20,%rdx
+  609b9d:	48 c1 c0 20          	rol    $0x20,%rax
+  609ba1:	49 01 df             	add    %rbx,%r15
+  609ba4:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  609ba9:	49 01 d0             	add    %rdx,%r8
+  609bac:	49 01 c2             	add    %rax,%r10
+  609baf:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  609bb4:	4d 31 f9             	xor    %r15,%r9
+  609bb7:	4c 31 c7             	xor    %r8,%rdi
+  609bba:	4c 31 d6             	xor    %r10,%rsi
+  609bbd:	4c 03 a4 24 80 00 00 	add    0x80(%rsp),%r12
+  609bc4:	00 
+  609bc5:	49 d1 c1             	rol    %r9
+  609bc8:	48 c1 cf 18          	ror    $0x18,%rdi
+  609bcc:	48 c1 ce 18          	ror    $0x18,%rsi
+  609bd0:	49 01 fe             	add    %rdi,%r14
+  609bd3:	49 01 f4             	add    %rsi,%r12
+  609bd6:	4c 31 f2             	xor    %r14,%rdx
+  609bd9:	4c 31 e0             	xor    %r12,%rax
+  609bdc:	48 c1 ca 10          	ror    $0x10,%rdx
+  609be0:	48 c1 c8 10          	ror    $0x10,%rax
+  609be4:	49 01 d0             	add    %rdx,%r8
+  609be7:	49 01 c2             	add    %rax,%r10
+  609bea:	4c 31 c7             	xor    %r8,%rdi
+  609bed:	48 d1 c7             	rol    %rdi
+  609bf0:	4c 31 d6             	xor    %r10,%rsi
+  609bf3:	48 03 ac 24 b0 00 00 	add    0xb0(%rsp),%rbp
+  609bfa:	00 
+  609bfb:	4c 03 ac 24 d8 00 00 	add    0xd8(%rsp),%r13
+  609c02:	00 
+  609c03:	48 01 dd             	add    %rbx,%rbp
+  609c06:	48 d1 c6             	rol    %rsi
+  609c09:	48 31 e9             	xor    %rbp,%rcx
+  609c0c:	48 03 ac 24 c8 00 00 	add    0xc8(%rsp),%rbp
+  609c13:	00 
+  609c14:	48 c1 c1 20          	rol    $0x20,%rcx
+  609c18:	49 01 cb             	add    %rcx,%r11
+  609c1b:	4c 31 db             	xor    %r11,%rbx
+  609c1e:	48 c1 cb 18          	ror    $0x18,%rbx
+  609c22:	48 01 dd             	add    %rbx,%rbp
+  609c25:	48 31 e9             	xor    %rbp,%rcx
+  609c28:	48 c1 c9 10          	ror    $0x10,%rcx
+  609c2c:	49 01 cb             	add    %rcx,%r11
+  609c2f:	4c 31 db             	xor    %r11,%rbx
+  609c32:	48 d1 c3             	rol    %rbx
+  609c35:	49 01 dd             	add    %rbx,%r13
+  609c38:	4c 31 ea             	xor    %r13,%rdx
+  609c3b:	4c 03 ac 24 c8 00 00 	add    0xc8(%rsp),%r13
+  609c42:	00 
+  609c43:	4c 03 b4 24 a8 00 00 	add    0xa8(%rsp),%r14
+  609c4a:	00 
+  609c4b:	48 c1 c2 20          	rol    $0x20,%rdx
+  609c4f:	4d 01 ce             	add    %r9,%r14
+  609c52:	49 01 d2             	add    %rdx,%r10
+  609c55:	4c 31 d3             	xor    %r10,%rbx
+  609c58:	48 c1 cb 18          	ror    $0x18,%rbx
+  609c5c:	49 01 dd             	add    %rbx,%r13
+  609c5f:	4c 31 ea             	xor    %r13,%rdx
+  609c62:	48 c1 ca 10          	ror    $0x10,%rdx
+  609c66:	49 01 d2             	add    %rdx,%r10
+  609c69:	4c 31 d3             	xor    %r10,%rbx
+  609c6c:	48 d1 c3             	rol    %rbx
+  609c6f:	4c 31 f0             	xor    %r14,%rax
+  609c72:	4c 03 a4 24 d0 00 00 	add    0xd0(%rsp),%r12
+  609c79:	00 
+  609c7a:	4c 03 b4 24 e0 00 00 	add    0xe0(%rsp),%r14
+  609c81:	00 
+  609c82:	49 01 fc             	add    %rdi,%r12
+  609c85:	48 c1 c0 20          	rol    $0x20,%rax
+  609c89:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  609c8e:	48 03 ac 24 88 00 00 	add    0x88(%rsp),%rbp
+  609c95:	00 
+  609c96:	4c 31 e1             	xor    %r12,%rcx
+  609c99:	49 01 c3             	add    %rax,%r11
+  609c9c:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  609ca1:	4c 03 64 24 78       	add    0x78(%rsp),%r12
+  609ca6:	48 c1 c1 20          	rol    $0x20,%rcx
+  609caa:	4d 31 d9             	xor    %r11,%r9
+  609cad:	48 01 f5             	add    %rsi,%rbp
+  609cb0:	49 01 cf             	add    %rcx,%r15
+  609cb3:	49 c1 c9 18          	ror    $0x18,%r9
+  609cb7:	48 31 eb             	xor    %rbp,%rbx
+  609cba:	4c 31 ff             	xor    %r15,%rdi
+  609cbd:	4d 01 ce             	add    %r9,%r14
+  609cc0:	48 c1 c3 20          	rol    $0x20,%rbx
+  609cc4:	48 c1 cf 18          	ror    $0x18,%rdi
+  609cc8:	4c 31 f0             	xor    %r14,%rax
+  609ccb:	49 01 d8             	add    %rbx,%r8
+  609cce:	49 01 fc             	add    %rdi,%r12
+  609cd1:	48 c1 c8 10          	ror    $0x10,%rax
+  609cd5:	4c 31 c6             	xor    %r8,%rsi
+  609cd8:	4c 31 e1             	xor    %r12,%rcx
+  609cdb:	49 01 c3             	add    %rax,%r11
+  609cde:	48 c1 c9 10          	ror    $0x10,%rcx
+  609ce2:	4d 31 d9             	xor    %r11,%r9
+  609ce5:	49 01 cf             	add    %rcx,%r15
+  609ce8:	49 d1 c1             	rol    %r9
+  609ceb:	4c 31 ff             	xor    %r15,%rdi
+  609cee:	48 d1 c7             	rol    %rdi
+  609cf1:	48 c1 ce 18          	ror    $0x18,%rsi
+  609cf5:	48 03 ac 24 b8 00 00 	add    0xb8(%rsp),%rbp
+  609cfc:	00 
+  609cfd:	4c 03 ac 24 98 00 00 	add    0x98(%rsp),%r13
+  609d04:	00 
+  609d05:	48 01 f5             	add    %rsi,%rbp
+  609d08:	4d 01 cd             	add    %r9,%r13
+  609d0b:	4c 03 b4 24 e8 00 00 	add    0xe8(%rsp),%r14
+  609d12:	00 
+  609d13:	48 31 eb             	xor    %rbp,%rbx
+  609d16:	49 01 fe             	add    %rdi,%r14
+  609d19:	48 c1 cb 10          	ror    $0x10,%rbx
+  609d1d:	4c 31 f2             	xor    %r14,%rdx
+  609d20:	4c 03 b4 24 90 00 00 	add    0x90(%rsp),%r14
+  609d27:	00 
+  609d28:	49 01 d8             	add    %rbx,%r8
+  609d2b:	4c 31 eb             	xor    %r13,%rbx
+  609d2e:	48 c1 c2 20          	rol    $0x20,%rdx
+  609d32:	4c 03 6c 24 70       	add    0x70(%rsp),%r13
+  609d37:	48 c1 c3 20          	rol    $0x20,%rbx
+  609d3b:	4c 31 c6             	xor    %r8,%rsi
+  609d3e:	49 01 d0             	add    %rdx,%r8
+  609d41:	49 01 df             	add    %rbx,%r15
+  609d44:	4c 31 c7             	xor    %r8,%rdi
+  609d47:	48 d1 c6             	rol    %rsi
+  609d4a:	4d 31 f9             	xor    %r15,%r9
+  609d4d:	48 c1 cf 18          	ror    $0x18,%rdi
+  609d51:	49 c1 c9 18          	ror    $0x18,%r9
+  609d55:	49 01 fe             	add    %rdi,%r14
+  609d58:	4d 01 cd             	add    %r9,%r13
+  609d5b:	4c 31 f2             	xor    %r14,%rdx
+  609d5e:	4c 31 eb             	xor    %r13,%rbx
+  609d61:	48 c1 cb 10          	ror    $0x10,%rbx
+  609d65:	49 01 df             	add    %rbx,%r15
+  609d68:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  609d6d:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  609d72:	4d 31 f9             	xor    %r15,%r9
+  609d75:	49 d1 c1             	rol    %r9
+  609d78:	48 c1 ca 10          	ror    $0x10,%rdx
+  609d7c:	48 03 ac 24 80 00 00 	add    0x80(%rsp),%rbp
+  609d83:	00 
+  609d84:	49 01 f4             	add    %rsi,%r12
+  609d87:	48 01 dd             	add    %rbx,%rbp
+  609d8a:	4c 03 a4 24 b0 00 00 	add    0xb0(%rsp),%r12
+  609d91:	00 
+  609d92:	49 01 d0             	add    %rdx,%r8
+  609d95:	4c 31 e0             	xor    %r12,%rax
+  609d98:	48 31 e9             	xor    %rbp,%rcx
+  609d9b:	4c 03 a4 24 a0 00 00 	add    0xa0(%rsp),%r12
+  609da2:	00 
+  609da3:	4c 31 c7             	xor    %r8,%rdi
+  609da6:	48 c1 c0 20          	rol    $0x20,%rax
+  609daa:	48 c1 c1 20          	rol    $0x20,%rcx
+  609dae:	48 03 ac 24 c0 00 00 	add    0xc0(%rsp),%rbp
+  609db5:	00 
+  609db6:	49 01 c2             	add    %rax,%r10
+  609db9:	49 01 cb             	add    %rcx,%r11
+  609dbc:	48 d1 c7             	rol    %rdi
+  609dbf:	4c 31 d6             	xor    %r10,%rsi
+  609dc2:	4c 31 db             	xor    %r11,%rbx
+  609dc5:	48 c1 ce 18          	ror    $0x18,%rsi
+  609dc9:	48 c1 cb 18          	ror    $0x18,%rbx
+  609dcd:	49 01 f4             	add    %rsi,%r12
+  609dd0:	48 01 dd             	add    %rbx,%rbp
+  609dd3:	4c 31 e0             	xor    %r12,%rax
+  609dd6:	48 31 e9             	xor    %rbp,%rcx
+  609dd9:	48 c1 c8 10          	ror    $0x10,%rax
+  609ddd:	48 c1 c9 10          	ror    $0x10,%rcx
+  609de1:	49 01 c2             	add    %rax,%r10
+  609de4:	49 01 cb             	add    %rcx,%r11
+  609de7:	4c 31 d6             	xor    %r10,%rsi
+  609dea:	4c 31 db             	xor    %r11,%rbx
+  609ded:	48 d1 c6             	rol    %rsi
+  609df0:	48 d1 c3             	rol    %rbx
+  609df3:	4c 03 ac 24 a0 00 00 	add    0xa0(%rsp),%r13
+  609dfa:	00 
+  609dfb:	4c 03 b4 24 e0 00 00 	add    0xe0(%rsp),%r14
+  609e02:	00 
+  609e03:	49 01 dd             	add    %rbx,%r13
+  609e06:	4d 01 ce             	add    %r9,%r14
+  609e09:	4c 03 a4 24 c8 00 00 	add    0xc8(%rsp),%r12
+  609e10:	00 
+  609e11:	4c 31 ea             	xor    %r13,%rdx
+  609e14:	4c 31 f0             	xor    %r14,%rax
+  609e17:	4c 03 ac 24 e8 00 00 	add    0xe8(%rsp),%r13
+  609e1e:	00 
+  609e1f:	49 01 fc             	add    %rdi,%r12
+  609e22:	48 c1 c2 20          	rol    $0x20,%rdx
+  609e26:	48 c1 c0 20          	rol    $0x20,%rax
+  609e2a:	4c 03 b4 24 b8 00 00 	add    0xb8(%rsp),%r14
+  609e31:	00 
+  609e32:	4c 31 e1             	xor    %r12,%rcx
+  609e35:	49 01 d2             	add    %rdx,%r10
+  609e38:	49 01 c3             	add    %rax,%r11
+  609e3b:	48 c1 c1 20          	rol    $0x20,%rcx
+  609e3f:	4c 31 d3             	xor    %r10,%rbx
+  609e42:	4d 31 d9             	xor    %r11,%r9
+  609e45:	48 c1 cb 18          	ror    $0x18,%rbx
+  609e49:	49 c1 c9 18          	ror    $0x18,%r9
+  609e4d:	49 01 dd             	add    %rbx,%r13
+  609e50:	4d 01 ce             	add    %r9,%r14
+  609e53:	4c 31 ea             	xor    %r13,%rdx
+  609e56:	4c 31 f0             	xor    %r14,%rax
+  609e59:	48 c1 ca 10          	ror    $0x10,%rdx
+  609e5d:	48 c1 c8 10          	ror    $0x10,%rax
+  609e61:	49 01 d2             	add    %rdx,%r10
+  609e64:	49 01 c3             	add    %rax,%r11
+  609e67:	4c 31 d3             	xor    %r10,%rbx
+  609e6a:	4d 31 d9             	xor    %r11,%r9
+  609e6d:	48 d1 c3             	rol    %rbx
+  609e70:	49 d1 c1             	rol    %r9
+  609e73:	49 01 cf             	add    %rcx,%r15
+  609e76:	48 03 6c 24 70       	add    0x70(%rsp),%rbp
+  609e7b:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  609e80:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  609e85:	48 01 f5             	add    %rsi,%rbp
+  609e88:	4c 31 ff             	xor    %r15,%rdi
+  609e8b:	48 c1 cf 18          	ror    $0x18,%rdi
+  609e8f:	4c 03 a4 24 88 00 00 	add    0x88(%rsp),%r12
+  609e96:	00 
+  609e97:	4c 03 ac 24 d0 00 00 	add    0xd0(%rsp),%r13
+  609e9e:	00 
+  609e9f:	48 31 eb             	xor    %rbp,%rbx
+  609ea2:	48 03 ac 24 b0 00 00 	add    0xb0(%rsp),%rbp
+  609ea9:	00 
+  609eaa:	49 01 fc             	add    %rdi,%r12
+  609ead:	4d 01 cd             	add    %r9,%r13
+  609eb0:	48 c1 c3 20          	rol    $0x20,%rbx
+  609eb4:	4c 31 e1             	xor    %r12,%rcx
+  609eb7:	49 01 d8             	add    %rbx,%r8
+  609eba:	48 c1 c9 10          	ror    $0x10,%rcx
+  609ebe:	4c 31 c6             	xor    %r8,%rsi
+  609ec1:	49 01 cf             	add    %rcx,%r15
+  609ec4:	48 c1 ce 18          	ror    $0x18,%rsi
+  609ec8:	4c 31 ff             	xor    %r15,%rdi
+  609ecb:	48 01 f5             	add    %rsi,%rbp
+  609ece:	48 d1 c7             	rol    %rdi
+  609ed1:	48 31 eb             	xor    %rbp,%rbx
+  609ed4:	48 c1 cb 10          	ror    $0x10,%rbx
+  609ed8:	49 01 d8             	add    %rbx,%r8
+  609edb:	4c 31 eb             	xor    %r13,%rbx
+  609ede:	4c 03 ac 24 80 00 00 	add    0x80(%rsp),%r13
+  609ee5:	00 
+  609ee6:	48 c1 c3 20          	rol    $0x20,%rbx
+  609eea:	4c 31 c6             	xor    %r8,%rsi
+  609eed:	49 01 df             	add    %rbx,%r15
+  609ef0:	48 d1 c6             	rol    %rsi
+  609ef3:	4d 31 f9             	xor    %r15,%r9
+  609ef6:	49 c1 c9 18          	ror    $0x18,%r9
+  609efa:	4d 01 cd             	add    %r9,%r13
+  609efd:	49 01 f4             	add    %rsi,%r12
+  609f00:	4c 31 eb             	xor    %r13,%rbx
+  609f03:	48 c1 cb 10          	ror    $0x10,%rbx
+  609f07:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  609f0c:	4c 03 b4 24 d8 00 00 	add    0xd8(%rsp),%r14
+  609f13:	00 
+  609f14:	49 01 df             	add    %rbx,%r15
+  609f17:	49 01 fe             	add    %rdi,%r14
+  609f1a:	4c 03 64 24 78       	add    0x78(%rsp),%r12
+  609f1f:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  609f24:	4d 31 f9             	xor    %r15,%r9
+  609f27:	4c 31 f2             	xor    %r14,%rdx
+  609f2a:	4c 31 e0             	xor    %r12,%rax
+  609f2d:	4c 03 b4 24 a8 00 00 	add    0xa8(%rsp),%r14
+  609f34:	00 
+  609f35:	49 d1 c1             	rol    %r9
+  609f38:	48 c1 c2 20          	rol    $0x20,%rdx
+  609f3c:	48 c1 c0 20          	rol    $0x20,%rax
+  609f40:	4c 03 a4 24 90 00 00 	add    0x90(%rsp),%r12
+  609f47:	00 
+  609f48:	49 01 d0             	add    %rdx,%r8
+  609f4b:	49 01 c2             	add    %rax,%r10
+  609f4e:	4c 31 c7             	xor    %r8,%rdi
+  609f51:	4c 31 d6             	xor    %r10,%rsi
+  609f54:	48 c1 cf 18          	ror    $0x18,%rdi
+  609f58:	48 c1 ce 18          	ror    $0x18,%rsi
+  609f5c:	49 01 fe             	add    %rdi,%r14
+  609f5f:	49 01 f4             	add    %rsi,%r12
+  609f62:	4c 31 f2             	xor    %r14,%rdx
+  609f65:	4c 31 e0             	xor    %r12,%rax
+  609f68:	48 c1 ca 10          	ror    $0x10,%rdx
+  609f6c:	48 c1 c8 10          	ror    $0x10,%rax
+  609f70:	49 01 d0             	add    %rdx,%r8
+  609f73:	49 01 c2             	add    %rax,%r10
+  609f76:	4c 31 c7             	xor    %r8,%rdi
+  609f79:	48 d1 c7             	rol    %rdi
+  609f7c:	4c 31 d6             	xor    %r10,%rsi
+  609f7f:	48 03 ac 24 c0 00 00 	add    0xc0(%rsp),%rbp
+  609f86:	00 
+  609f87:	4c 03 ac 24 c0 00 00 	add    0xc0(%rsp),%r13
+  609f8e:	00 
+  609f8f:	48 01 dd             	add    %rbx,%rbp
+  609f92:	4c 03 b4 24 b0 00 00 	add    0xb0(%rsp),%r14
+  609f99:	00 
+  609f9a:	48 d1 c6             	rol    %rsi
+  609f9d:	48 31 e9             	xor    %rbp,%rcx
+  609fa0:	48 03 ac 24 98 00 00 	add    0x98(%rsp),%rbp
+  609fa7:	00 
+  609fa8:	4d 01 ce             	add    %r9,%r14
+  609fab:	48 c1 c1 20          	rol    $0x20,%rcx
+  609faf:	49 01 cb             	add    %rcx,%r11
+  609fb2:	4c 31 db             	xor    %r11,%rbx
+  609fb5:	48 c1 cb 18          	ror    $0x18,%rbx
+  609fb9:	48 01 dd             	add    %rbx,%rbp
+  609fbc:	48 31 e9             	xor    %rbp,%rcx
+  609fbf:	48 c1 c9 10          	ror    $0x10,%rcx
+  609fc3:	49 01 cb             	add    %rcx,%r11
+  609fc6:	4c 31 db             	xor    %r11,%rbx
+  609fc9:	48 d1 c3             	rol    %rbx
+  609fcc:	49 01 dd             	add    %rbx,%r13
+  609fcf:	4c 31 ea             	xor    %r13,%rdx
+  609fd2:	4c 03 ac 24 80 00 00 	add    0x80(%rsp),%r13
+  609fd9:	00 
+  609fda:	48 c1 c2 20          	rol    $0x20,%rdx
+  609fde:	49 01 d2             	add    %rdx,%r10
+  609fe1:	4c 31 d3             	xor    %r10,%rbx
+  609fe4:	48 c1 cb 18          	ror    $0x18,%rbx
+  609fe8:	49 01 dd             	add    %rbx,%r13
+  609feb:	4c 31 ea             	xor    %r13,%rdx
+  609fee:	48 c1 ca 10          	ror    $0x10,%rdx
+  609ff2:	49 01 d2             	add    %rdx,%r10
+  609ff5:	4c 31 d3             	xor    %r10,%rbx
+  609ff8:	48 d1 c3             	rol    %rbx
+  609ffb:	4c 31 f0             	xor    %r14,%rax
+  609ffe:	4c 03 a4 24 a8 00 00 	add    0xa8(%rsp),%r12
+  60a005:	00 
+  60a006:	48 03 6c 24 78       	add    0x78(%rsp),%rbp
+  60a00b:	49 01 fc             	add    %rdi,%r12
+  60a00e:	48 c1 c0 20          	rol    $0x20,%rax
+  60a012:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  60a017:	48 01 f5             	add    %rsi,%rbp
+  60a01a:	4c 31 e1             	xor    %r12,%rcx
+  60a01d:	49 01 c3             	add    %rax,%r11
+  60a020:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  60a025:	4c 03 b4 24 90 00 00 	add    0x90(%rsp),%r14
+  60a02c:	00 
+  60a02d:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a031:	4d 31 d9             	xor    %r11,%r9
+  60a034:	4c 03 a4 24 a0 00 00 	add    0xa0(%rsp),%r12
+  60a03b:	00 
+  60a03c:	49 01 cf             	add    %rcx,%r15
+  60a03f:	49 c1 c9 18          	ror    $0x18,%r9
+  60a043:	48 31 eb             	xor    %rbp,%rbx
+  60a046:	4c 31 ff             	xor    %r15,%rdi
+  60a049:	4d 01 ce             	add    %r9,%r14
+  60a04c:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a050:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a054:	4c 31 f0             	xor    %r14,%rax
+  60a057:	49 01 d8             	add    %rbx,%r8
+  60a05a:	49 01 fc             	add    %rdi,%r12
+  60a05d:	48 c1 c8 10          	ror    $0x10,%rax
+  60a061:	4c 31 c6             	xor    %r8,%rsi
+  60a064:	4c 31 e1             	xor    %r12,%rcx
+  60a067:	49 01 c3             	add    %rax,%r11
+  60a06a:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a06e:	4d 31 d9             	xor    %r11,%r9
+  60a071:	49 01 cf             	add    %rcx,%r15
+  60a074:	49 d1 c1             	rol    %r9
+  60a077:	4c 31 ff             	xor    %r15,%rdi
+  60a07a:	48 d1 c7             	rol    %rdi
+  60a07d:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a081:	48 03 ac 24 98 00 00 	add    0x98(%rsp),%rbp
+  60a088:	00 
+  60a089:	4c 03 ac 24 e8 00 00 	add    0xe8(%rsp),%r13
+  60a090:	00 
+  60a091:	48 01 f5             	add    %rsi,%rbp
+  60a094:	4d 01 cd             	add    %r9,%r13
+  60a097:	4c 03 b4 24 b8 00 00 	add    0xb8(%rsp),%r14
+  60a09e:	00 
+  60a09f:	48 31 eb             	xor    %rbp,%rbx
+  60a0a2:	49 01 fe             	add    %rdi,%r14
+  60a0a5:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a0a9:	4c 31 f2             	xor    %r14,%rdx
+  60a0ac:	4c 03 b4 24 e0 00 00 	add    0xe0(%rsp),%r14
+  60a0b3:	00 
+  60a0b4:	49 01 d8             	add    %rbx,%r8
+  60a0b7:	4c 31 eb             	xor    %r13,%rbx
+  60a0ba:	48 c1 c2 20          	rol    $0x20,%rdx
+  60a0be:	4c 03 ac 24 c8 00 00 	add    0xc8(%rsp),%r13
+  60a0c5:	00 
+  60a0c6:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a0ca:	4c 31 c6             	xor    %r8,%rsi
+  60a0cd:	49 01 d0             	add    %rdx,%r8
+  60a0d0:	49 01 df             	add    %rbx,%r15
+  60a0d3:	4c 31 c7             	xor    %r8,%rdi
+  60a0d6:	48 d1 c6             	rol    %rsi
+  60a0d9:	4d 31 f9             	xor    %r15,%r9
+  60a0dc:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a0e0:	49 c1 c9 18          	ror    $0x18,%r9
+  60a0e4:	49 01 fe             	add    %rdi,%r14
+  60a0e7:	4d 01 cd             	add    %r9,%r13
+  60a0ea:	4c 31 f2             	xor    %r14,%rdx
+  60a0ed:	4c 31 eb             	xor    %r13,%rbx
+  60a0f0:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a0f4:	49 01 df             	add    %rbx,%r15
+  60a0f7:	48 89 5c 24 30       	mov    %rbx,0x30(%rsp)
+  60a0fc:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  60a101:	4d 31 f9             	xor    %r15,%r9
+  60a104:	49 d1 c1             	rol    %r9
+  60a107:	48 c1 ca 10          	ror    $0x10,%rdx
+  60a10b:	48 03 ac 24 d8 00 00 	add    0xd8(%rsp),%rbp
+  60a112:	00 
+  60a113:	49 01 f4             	add    %rsi,%r12
+  60a116:	48 01 dd             	add    %rbx,%rbp
+  60a119:	4c 03 a4 24 88 00 00 	add    0x88(%rsp),%r12
+  60a120:	00 
+  60a121:	49 01 d0             	add    %rdx,%r8
+  60a124:	4c 31 e0             	xor    %r12,%rax
+  60a127:	48 31 e9             	xor    %rbp,%rcx
+  60a12a:	48 03 6c 24 70       	add    0x70(%rsp),%rbp
+  60a12f:	4c 31 c7             	xor    %r8,%rdi
+  60a132:	48 c1 c0 20          	rol    $0x20,%rax
+  60a136:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a13a:	4c 03 a4 24 d0 00 00 	add    0xd0(%rsp),%r12
+  60a141:	00 
+  60a142:	49 01 c2             	add    %rax,%r10
+  60a145:	49 01 cb             	add    %rcx,%r11
+  60a148:	48 d1 c7             	rol    %rdi
+  60a14b:	4c 31 d6             	xor    %r10,%rsi
+  60a14e:	4c 31 db             	xor    %r11,%rbx
+  60a151:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a155:	48 c1 cb 18          	ror    $0x18,%rbx
+  60a159:	49 01 f4             	add    %rsi,%r12
+  60a15c:	48 01 dd             	add    %rbx,%rbp
+  60a15f:	4c 31 e0             	xor    %r12,%rax
+  60a162:	48 31 e9             	xor    %rbp,%rcx
+  60a165:	48 c1 c8 10          	ror    $0x10,%rax
+  60a169:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a16d:	49 01 c2             	add    %rax,%r10
+  60a170:	49 01 cb             	add    %rcx,%r11
+  60a173:	4c 31 d6             	xor    %r10,%rsi
+  60a176:	4c 31 db             	xor    %r11,%rbx
+  60a179:	48 d1 c6             	rol    %rsi
+  60a17c:	48 d1 c3             	rol    %rbx
+  60a17f:	4c 03 6c 24 70       	add    0x70(%rsp),%r13
+  60a184:	4c 03 b4 24 80 00 00 	add    0x80(%rsp),%r14
+  60a18b:	00 
+  60a18c:	49 01 dd             	add    %rbx,%r13
+  60a18f:	4d 01 ce             	add    %r9,%r14
+  60a192:	4c 31 ea             	xor    %r13,%rdx
+  60a195:	4c 03 6c 24 78       	add    0x78(%rsp),%r13
+  60a19a:	4c 31 f0             	xor    %r14,%rax
+  60a19d:	4c 03 b4 24 88 00 00 	add    0x88(%rsp),%r14
+  60a1a4:	00 
+  60a1a5:	48 c1 c2 20          	rol    $0x20,%rdx
+  60a1a9:	48 c1 c0 20          	rol    $0x20,%rax
+  60a1ad:	49 01 d2             	add    %rdx,%r10
+  60a1b0:	49 01 c3             	add    %rax,%r11
+  60a1b3:	4c 31 d3             	xor    %r10,%rbx
+  60a1b6:	4d 31 d9             	xor    %r11,%r9
+  60a1b9:	48 c1 cb 18          	ror    $0x18,%rbx
+  60a1bd:	49 c1 c9 18          	ror    $0x18,%r9
+  60a1c1:	49 01 dd             	add    %rbx,%r13
+  60a1c4:	4d 01 ce             	add    %r9,%r14
+  60a1c7:	4c 31 ea             	xor    %r13,%rdx
+  60a1ca:	4c 31 f0             	xor    %r14,%rax
+  60a1cd:	48 c1 ca 10          	ror    $0x10,%rdx
+  60a1d1:	48 c1 c8 10          	ror    $0x10,%rax
+  60a1d5:	49 01 d2             	add    %rdx,%r10
+  60a1d8:	49 01 c3             	add    %rax,%r11
+  60a1db:	4c 31 d3             	xor    %r10,%rbx
+  60a1de:	4d 31 d9             	xor    %r11,%r9
+  60a1e1:	48 d1 c3             	rol    %rbx
+  60a1e4:	49 d1 c1             	rol    %r9
+  60a1e7:	48 89 5c 24 38       	mov    %rbx,0x38(%rsp)
+  60a1ec:	4c 03 a4 24 90 00 00 	add    0x90(%rsp),%r12
+  60a1f3:	00 
+  60a1f4:	49 01 fc             	add    %rdi,%r12
+  60a1f7:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  60a1fc:	4c 31 e1             	xor    %r12,%rcx
+  60a1ff:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a203:	49 01 cf             	add    %rcx,%r15
+  60a206:	48 03 ac 24 a0 00 00 	add    0xa0(%rsp),%rbp
+  60a20d:	00 
+  60a20e:	4c 03 a4 24 98 00 00 	add    0x98(%rsp),%r12
+  60a215:	00 
+  60a216:	48 01 f5             	add    %rsi,%rbp
+  60a219:	4c 31 ff             	xor    %r15,%rdi
+  60a21c:	4c 03 ac 24 b0 00 00 	add    0xb0(%rsp),%r13
+  60a223:	00 
+  60a224:	48 31 eb             	xor    %rbp,%rbx
+  60a227:	48 03 ac 24 a8 00 00 	add    0xa8(%rsp),%rbp
+  60a22e:	00 
+  60a22f:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a233:	4d 01 cd             	add    %r9,%r13
+  60a236:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a23a:	49 01 fc             	add    %rdi,%r12
+  60a23d:	49 01 d8             	add    %rbx,%r8
+  60a240:	4c 31 e1             	xor    %r12,%rcx
+  60a243:	4c 31 c6             	xor    %r8,%rsi
+  60a246:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a24a:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a24e:	49 01 cf             	add    %rcx,%r15
+  60a251:	48 01 f5             	add    %rsi,%rbp
+  60a254:	4c 31 ff             	xor    %r15,%rdi
+  60a257:	48 31 eb             	xor    %rbp,%rbx
+  60a25a:	48 d1 c7             	rol    %rdi
+  60a25d:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a261:	49 01 d8             	add    %rbx,%r8
+  60a264:	4c 31 eb             	xor    %r13,%rbx
+  60a267:	4c 03 ac 24 b8 00 00 	add    0xb8(%rsp),%r13
+  60a26e:	00 
+  60a26f:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a273:	4c 31 c6             	xor    %r8,%rsi
+  60a276:	49 01 df             	add    %rbx,%r15
+  60a279:	48 d1 c6             	rol    %rsi
+  60a27c:	4d 31 f9             	xor    %r15,%r9
+  60a27f:	49 c1 c9 18          	ror    $0x18,%r9
+  60a283:	4d 01 cd             	add    %r9,%r13
+  60a286:	4c 03 b4 24 c0 00 00 	add    0xc0(%rsp),%r14
+  60a28d:	00 
+  60a28e:	49 01 f4             	add    %rsi,%r12
+  60a291:	4c 03 a4 24 d0 00 00 	add    0xd0(%rsp),%r12
+  60a298:	00 
+  60a299:	49 01 fe             	add    %rdi,%r14
+  60a29c:	4c 31 e0             	xor    %r12,%rax
+  60a29f:	4c 03 a4 24 d8 00 00 	add    0xd8(%rsp),%r12
+  60a2a6:	00 
+  60a2a7:	4c 31 eb             	xor    %r13,%rbx
+  60a2aa:	48 c1 c0 20          	rol    $0x20,%rax
+  60a2ae:	4c 31 f2             	xor    %r14,%rdx
+  60a2b1:	4c 03 b4 24 c8 00 00 	add    0xc8(%rsp),%r14
+  60a2b8:	00 
+  60a2b9:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a2bd:	48 c1 c2 20          	rol    $0x20,%rdx
+  60a2c1:	49 01 c2             	add    %rax,%r10
+  60a2c4:	49 01 df             	add    %rbx,%r15
+  60a2c7:	49 01 d0             	add    %rdx,%r8
+  60a2ca:	4c 31 d6             	xor    %r10,%rsi
+  60a2cd:	4c 89 7c 24 20       	mov    %r15,0x20(%rsp)
+  60a2d2:	4d 31 f9             	xor    %r15,%r9
+  60a2d5:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a2d9:	4c 31 c7             	xor    %r8,%rdi
+  60a2dc:	4c 8b 7c 24 38       	mov    0x38(%rsp),%r15
+  60a2e1:	49 d1 c1             	rol    %r9
+  60a2e4:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a2e8:	49 01 f4             	add    %rsi,%r12
+  60a2eb:	49 01 fe             	add    %rdi,%r14
+  60a2ee:	4c 31 e0             	xor    %r12,%rax
+  60a2f1:	4c 31 f2             	xor    %r14,%rdx
+  60a2f4:	48 c1 c8 10          	ror    $0x10,%rax
+  60a2f8:	48 c1 ca 10          	ror    $0x10,%rdx
+  60a2fc:	49 01 c2             	add    %rax,%r10
+  60a2ff:	49 01 d0             	add    %rdx,%r8
+  60a302:	4c 31 c7             	xor    %r8,%rdi
+  60a305:	48 d1 c7             	rol    %rdi
+  60a308:	4c 31 d6             	xor    %r10,%rsi
+  60a30b:	48 03 ac 24 e0 00 00 	add    0xe0(%rsp),%rbp
+  60a312:	00 
+  60a313:	4d 01 ce             	add    %r9,%r14
+  60a316:	4c 01 fd             	add    %r15,%rbp
+  60a319:	4c 03 ac 24 e0 00 00 	add    0xe0(%rsp),%r13
+  60a320:	00 
+  60a321:	4c 03 b4 24 90 00 00 	add    0x90(%rsp),%r14
+  60a328:	00 
+  60a329:	48 d1 c6             	rol    %rsi
+  60a32c:	48 31 e9             	xor    %rbp,%rcx
+  60a32f:	48 03 ac 24 e8 00 00 	add    0xe8(%rsp),%rbp
+  60a336:	00 
+  60a337:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a33b:	49 01 cb             	add    %rcx,%r11
+  60a33e:	4d 31 df             	xor    %r11,%r15
+  60a341:	49 c1 cf 18          	ror    $0x18,%r15
+  60a345:	4c 01 fd             	add    %r15,%rbp
+  60a348:	48 31 e9             	xor    %rbp,%rcx
+  60a34b:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a34f:	49 01 cb             	add    %rcx,%r11
+  60a352:	4d 31 df             	xor    %r11,%r15
+  60a355:	49 d1 c7             	rol    %r15
+  60a358:	4d 01 fd             	add    %r15,%r13
+  60a35b:	4c 31 ea             	xor    %r13,%rdx
+  60a35e:	4c 03 ac 24 c0 00 00 	add    0xc0(%rsp),%r13
+  60a365:	00 
+  60a366:	48 c1 c2 20          	rol    $0x20,%rdx
+  60a36a:	49 01 d2             	add    %rdx,%r10
+  60a36d:	4d 31 d7             	xor    %r10,%r15
+  60a370:	49 c1 cf 18          	ror    $0x18,%r15
+  60a374:	4d 01 fd             	add    %r15,%r13
+  60a377:	4c 31 ea             	xor    %r13,%rdx
+  60a37a:	48 c1 ca 10          	ror    $0x10,%rdx
+  60a37e:	49 01 d2             	add    %rdx,%r10
+  60a381:	4d 31 d7             	xor    %r10,%r15
+  60a384:	49 d1 c7             	rol    %r15
+  60a387:	4c 31 f0             	xor    %r14,%rax
+  60a38a:	4c 03 a4 24 b8 00 00 	add    0xb8(%rsp),%r12
+  60a391:	00 
+  60a392:	4c 03 b4 24 b0 00 00 	add    0xb0(%rsp),%r14
+  60a399:	00 
+  60a39a:	49 01 fc             	add    %rdi,%r12
+  60a39d:	4c 89 7c 24 30       	mov    %r15,0x30(%rsp)
+  60a3a2:	4c 8b 7c 24 20       	mov    0x20(%rsp),%r15
+  60a3a7:	48 c1 c0 20          	rol    $0x20,%rax
+  60a3ab:	4c 31 e1             	xor    %r12,%rcx
+  60a3ae:	49 01 c3             	add    %rax,%r11
+  60a3b1:	4c 03 a4 24 e8 00 00 	add    0xe8(%rsp),%r12
+  60a3b8:	00 
+  60a3b9:	48 03 ac 24 d8 00 00 	add    0xd8(%rsp),%rbp
+  60a3c0:	00 
+  60a3c1:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a3c5:	4d 31 d9             	xor    %r11,%r9
+  60a3c8:	48 01 f5             	add    %rsi,%rbp
+  60a3cb:	49 01 cf             	add    %rcx,%r15
+  60a3ce:	49 c1 c9 18          	ror    $0x18,%r9
+  60a3d2:	48 31 eb             	xor    %rbp,%rbx
+  60a3d5:	4c 31 ff             	xor    %r15,%rdi
+  60a3d8:	4d 01 ce             	add    %r9,%r14
+  60a3db:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a3df:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a3e3:	4c 31 f0             	xor    %r14,%rax
+  60a3e6:	49 01 d8             	add    %rbx,%r8
+  60a3e9:	49 01 fc             	add    %rdi,%r12
+  60a3ec:	48 c1 c8 10          	ror    $0x10,%rax
+  60a3f0:	4c 31 c6             	xor    %r8,%rsi
+  60a3f3:	4c 31 e1             	xor    %r12,%rcx
+  60a3f6:	49 01 c3             	add    %rax,%r11
+  60a3f9:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a3fd:	4d 31 d9             	xor    %r11,%r9
+  60a400:	49 01 cf             	add    %rcx,%r15
+  60a403:	49 d1 c1             	rol    %r9
+  60a406:	4c 31 ff             	xor    %r15,%rdi
+  60a409:	48 d1 c7             	rol    %rdi
+  60a40c:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a410:	48 03 ac 24 a0 00 00 	add    0xa0(%rsp),%rbp
+  60a417:	00 
+  60a418:	4c 03 6c 24 78       	add    0x78(%rsp),%r13
+  60a41d:	48 01 f5             	add    %rsi,%rbp
+  60a420:	4c 03 74 24 70       	add    0x70(%rsp),%r14
+  60a425:	4d 01 cd             	add    %r9,%r13
+  60a428:	48 31 eb             	xor    %rbp,%rbx
+  60a42b:	49 01 fe             	add    %rdi,%r14
+  60a42e:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a432:	4c 31 f2             	xor    %r14,%rdx
+  60a435:	4c 03 b4 24 80 00 00 	add    0x80(%rsp),%r14
+  60a43c:	00 
+  60a43d:	49 01 d8             	add    %rbx,%r8
+  60a440:	4c 31 eb             	xor    %r13,%rbx
+  60a443:	48 c1 c2 20          	rol    $0x20,%rdx
+  60a447:	4c 03 ac 24 d0 00 00 	add    0xd0(%rsp),%r13
+  60a44e:	00 
+  60a44f:	48 c1 c3 20          	rol    $0x20,%rbx
+  60a453:	4c 31 c6             	xor    %r8,%rsi
+  60a456:	49 01 d0             	add    %rdx,%r8
+  60a459:	49 01 df             	add    %rbx,%r15
+  60a45c:	4c 31 c7             	xor    %r8,%rdi
+  60a45f:	48 d1 c6             	rol    %rsi
+  60a462:	4d 31 f9             	xor    %r15,%r9
+  60a465:	48 c1 cf 18          	ror    $0x18,%rdi
+  60a469:	49 c1 c9 18          	ror    $0x18,%r9
+  60a46d:	49 01 fe             	add    %rdi,%r14
+  60a470:	4d 01 cd             	add    %r9,%r13
+  60a473:	4c 31 f2             	xor    %r14,%rdx
+  60a476:	4c 31 eb             	xor    %r13,%rbx
+  60a479:	48 c1 ca 10          	ror    $0x10,%rdx
+  60a47d:	48 c1 cb 10          	ror    $0x10,%rbx
+  60a481:	49 01 d0             	add    %rdx,%r8
+  60a484:	49 01 df             	add    %rbx,%r15
+  60a487:	49 01 f4             	add    %rsi,%r12
+  60a48a:	4c 03 a4 24 c8 00 00 	add    0xc8(%rsp),%r12
+  60a491:	00 
+  60a492:	48 89 5c 24 38       	mov    %rbx,0x38(%rsp)
+  60a497:	4c 31 e0             	xor    %r12,%rax
+  60a49a:	4c 89 7c 24 20       	mov    %r15,0x20(%rsp)
+  60a49f:	4c 03 a4 24 a8 00 00 	add    0xa8(%rsp),%r12
+  60a4a6:	00 
+  60a4a7:	4c 8b 7c 24 30       	mov    0x30(%rsp),%r15
+  60a4ac:	48 c1 c0 20          	rol    $0x20,%rax
+  60a4b0:	48 8b 5c 24 08       	mov    0x8(%rsp),%rbx
+  60a4b5:	48 03 ac 24 98 00 00 	add    0x98(%rsp),%rbp
+  60a4bc:	00 
+  60a4bd:	49 01 c2             	add    %rax,%r10
+  60a4c0:	4c 01 fd             	add    %r15,%rbp
+  60a4c3:	4c 31 d6             	xor    %r10,%rsi
+  60a4c6:	4c 33 2b             	xor    (%rbx),%r13
+  60a4c9:	48 31 e9             	xor    %rbp,%rcx
+  60a4cc:	48 c1 ce 18          	ror    $0x18,%rsi
+  60a4d0:	48 03 ac 24 88 00 00 	add    0x88(%rsp),%rbp
+  60a4d7:	00 
+  60a4d8:	48 c1 c1 20          	rol    $0x20,%rcx
+  60a4dc:	49 01 f4             	add    %rsi,%r12
+  60a4df:	49 01 cb             	add    %rcx,%r11
+  60a4e2:	4c 31 e0             	xor    %r12,%rax
+  60a4e5:	4c 33 63 10          	xor    0x10(%rbx),%r12
+  60a4e9:	4d 31 df             	xor    %r11,%r15
+  60a4ec:	48 c1 c8 10          	ror    $0x10,%rax
+  60a4f0:	49 c1 cf 18          	ror    $0x18,%r15
+  60a4f4:	49 01 c2             	add    %rax,%r10
+  60a4f7:	4c 01 fd             	add    %r15,%rbp
+  60a4fa:	4d 31 d5             	xor    %r10,%r13
+  60a4fd:	48 31 e9             	xor    %rbp,%rcx
+  60a500:	4c 89 2b             	mov    %r13,(%rbx)
+  60a503:	48 c1 c9 10          	ror    $0x10,%rcx
+  60a507:	4c 89 ac 24 f0 00 00 	mov    %r13,0xf0(%rsp)
+  60a50e:	00 
+  60a50f:	4c 8b 6b 08          	mov    0x8(%rbx),%r13
+  60a513:	49 01 cb             	add    %rcx,%r11
+  60a516:	4d 31 dd             	xor    %r11,%r13
+  60a519:	4d 31 ee             	xor    %r13,%r14
+  60a51c:	4c 89 73 08          	mov    %r14,0x8(%rbx)
+  60a520:	4c 89 b4 24 f8 00 00 	mov    %r14,0xf8(%rsp)
+  60a527:	00 
+  60a528:	49 89 de             	mov    %rbx,%r14
+  60a52b:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
+  60a530:	49 33 6e 18          	xor    0x18(%r14),%rbp
+  60a534:	49 31 dc             	xor    %rbx,%r12
+  60a537:	4c 31 c5             	xor    %r8,%rbp
+  60a53a:	4d 31 fb             	xor    %r15,%r11
+  60a53d:	49 31 d9             	xor    %rbx,%r9
+  60a540:	4c 31 c7             	xor    %r8,%rdi
+  60a543:	4c 31 d6             	xor    %r10,%rsi
+  60a546:	49 33 46 28          	xor    0x28(%r14),%rax
+  60a54a:	49 33 4e 30          	xor    0x30(%r14),%rcx
+  60a54e:	48 8b 5c 24 38       	mov    0x38(%rsp),%rbx
+  60a553:	49 d1 c3             	rol    %r11
+  60a556:	49 33 5e 38          	xor    0x38(%r14),%rbx
+  60a55a:	49 d1 c1             	rol    %r9
+  60a55d:	4d 33 5e 20          	xor    0x20(%r14),%r11
+  60a561:	48 d1 c7             	rol    %rdi
+  60a564:	4c 31 c8             	xor    %r9,%rax
+  60a567:	4d 89 66 10          	mov    %r12,0x10(%r14)
+  60a56b:	48 d1 c6             	rol    %rsi
+  60a56e:	4c 31 da             	xor    %r11,%rdx
+  60a571:	48 31 f9             	xor    %rdi,%rcx
+  60a574:	49 89 46 28          	mov    %rax,0x28(%r14)
+  60a578:	48 31 f3             	xor    %rsi,%rbx
+  60a57b:	48 89 84 24 18 01 00 	mov    %rax,0x118(%rsp)
+  60a582:	00 
+  60a583:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  60a588:	4c 89 a4 24 00 01 00 	mov    %r12,0x100(%rsp)
+  60a58f:	00 
+  60a590:	48 89 ac 24 08 01 00 	mov    %rbp,0x108(%rsp)
+  60a597:	00 
+  60a598:	49 89 6e 18          	mov    %rbp,0x18(%r14)
+  60a59c:	48 89 94 24 10 01 00 	mov    %rdx,0x110(%rsp)
+  60a5a3:	00 
+  60a5a4:	49 89 56 20          	mov    %rdx,0x20(%r14)
+  60a5a8:	48 89 8c 24 20 01 00 	mov    %rcx,0x120(%rsp)
+  60a5af:	00 
+  60a5b0:	49 89 4e 30          	mov    %rcx,0x30(%r14)
+  60a5b4:	48 89 9c 24 28 01 00 	mov    %rbx,0x128(%rsp)
+  60a5bb:	00 
+  60a5bc:	49 89 5e 38          	mov    %rbx,0x38(%r14)
+  60a5c0:	48 01 44 24 18       	add    %rax,0x18(%rsp)
+  60a5c5:	48 29 44 24 40       	sub    %rax,0x40(%rsp)
+  60a5ca:	0f 85 c8 e8 ff ff    	jne    608e98 <blake2b_compress+0xa8>
+  60a5d0:	48 8b 84 24 78 01 00 	mov    0x178(%rsp),%rax
+  60a5d7:	00 
+  60a5d8:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
+  60a5df:	00 00 
+  60a5e1:	75 12                	jne    60a5f5 <blake2b_compress+0x1805>
+  60a5e3:	48 81 c4 88 01 00 00 	add    $0x188,%rsp
+  60a5ea:	5b                   	pop    %rbx
+  60a5eb:	5d                   	pop    %rbp
+  60a5ec:	41 5c                	pop    %r12
+  60a5ee:	41 5d                	pop    %r13
+  60a5f0:	41 5e                	pop    %r14
+  60a5f2:	41 5f                	pop    %r15
+  60a5f4:	c3                   	retq   
+  60a5f5:	e8 dd 31 10 00       	callq  70d7d7 <__stack_chk_fail>
+  60a5fa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
