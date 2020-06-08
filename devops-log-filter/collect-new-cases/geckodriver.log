@@ -1,0 +1,8 @@
+1591548393703	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewDLN2N"
+Error: no DISPLAY environment variable specified
+1591548519215	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletWpGHi"
+Error: no DISPLAY environment variable specified
+1591548583087	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilef1dmqS"
+Error: no DISPLAY environment variable specified
+1591548701455	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilejp5ybL"
+Error: no DISPLAY environment variable specified
