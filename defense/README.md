@@ -1,6 +1,6 @@
 ### gvisor-1.0.tar.gz :
 
-**Listen_modified_addr(t *Task, at usermem.AccessType**
+**Listen_modified_addr(t *Task, at usermem.AccessType)**
 
 - `function-1`: get addr from syscall 308 and clear the permission of this addr 
 
