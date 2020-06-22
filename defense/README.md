@@ -1,8 +1,8 @@
 ##### gvisor-1.0.tar.gz :
 
-- `function-1`: get addr from syscall 308 and clear the permission of this addr
+- `function-1`: get addr from syscall 308 and clear the permission of this addr (*Listen_modified_addr(t *Task, at usermem.AccessType)*)
 
-- `function-2`: return permissions of the addr
+- `function-2`: return permissions of the addr  (*handle_seg_faults()*)
 
 ##### Modified content:
 
@@ -12,4 +12,4 @@
 
 ##### Test Docker Image:
 
-`docker run -it --runtime=runsc --memory=4000m cloudinsky/gvisor-sys:v2`
+- `docker run -it --runtime=runsc --memory=4000m cloudinsky/gvisor-sys:v2`
