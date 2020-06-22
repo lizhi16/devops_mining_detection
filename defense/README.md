@@ -1,10 +1,14 @@
 ##### gvisor-1.0.tar.gz :
 
-- `function-1`: get addr from syscall 308 and clear the permission of this addr (*Listen_modified_addr(t *Task, at usermem.AccessType)*)
+**Listen_modified_addr(t *Task, at usermem.AccessType)**
 
-- `function-2`: return permissions of the addr  (*handle_seg_faults()*)
+- `function-1`: get addr from syscall 308 and clear the permission of this addr 
 
-##### Modified content:
+**handle_seg_faults()**
+
+- `function-2`: return permissions of the addr
+
+##### Modified Contents:
 
 - `pkg/sentry/kernel/task_run.go#395-466`
 
