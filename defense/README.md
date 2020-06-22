@@ -5,4 +5,7 @@ gvisor-1.0.tar.gz :
 `function-2`: return permissions of the addr
 
 Modified content:
+
 `pkg/sentry/kernel/task_run.go#395-466`
+
+`pkg/sentry/mm/syscall.go#395-466#40-58`
