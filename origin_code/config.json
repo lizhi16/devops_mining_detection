@@ -1,0 +1,108 @@
+{
+    "api": {
+        "id": null,
+        "worker-id": null
+    },
+    "http": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 0,
+        "access-token": null,
+        "restricted": true
+    },
+    "autosave": true,
+    "background": false,
+    "colors": true,
+    "randomx": {
+        "init": -1,
+        "mode": "light",
+        "1gb-pages": false,
+        "rdmsr": true,
+        "wrmsr": true,
+        "numa": true
+    },
+    "cpu": {
+        "enabled": true,
+        "huge-pages": true,
+        "hw-aes": null,
+        "priority": null,
+        "memory-pool": false,
+        "yield": true,
+        "asm": true,
+        "argon2-impl": null,
+        "argon2": [0, 1, 2, 3],
+        "cn": [
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [1, 3]
+        ],
+        "cn-heavy": [
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [1, 3]
+        ],
+        "cn-lite": [
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [1, 3]
+        ],
+        "cn-pico": [
+            [2, 0],
+            [2, 1],
+            [2, 2],
+            [2, 3]
+        ],
+        "cn/gpu": [0, 1, 2, 3],
+        "rx": [0, 1, 2, 3],
+        "rx/wow": [0, 1, 2, 3],
+        "cn/0": false,
+        "cn-lite/0": false,
+        "rx/arq": "rx/wow"
+    },
+    "opencl": {
+        "enabled": false,
+        "cache": true,
+        "loader": null,
+        "platform": "AMD",
+        "cn/0": false,
+        "cn-lite/0": false
+    },
+    "cuda": {
+        "enabled": false,
+        "loader": null,
+        "nvml": true,
+        "cn/0": false,
+        "cn-lite/0": false
+    },
+    "donate-level": 5,
+    "donate-over-proxy": 1,
+    "log-file": null,
+    "pools": [
+        {
+            "algo": null,
+            "coin": null,
+            "url": "pool.minexmr.com:4444",
+            "user": "44VAwEd4tTAU2V1n2snMo5d1vD3wXBY6scUGWGrqJSRsFt46SR33MscZRNLB9TErKg4mVvjSe1FPLQE4pJLqRegG8CJWsTA",
+            "pass": "x",
+            "rig-id": null,
+            "nicehash": false,
+            "keepalive": false,
+            "enabled": true,
+            "tls": false,
+            "tls-fingerprint": null,
+            "daemon": false,
+            "self-select": null
+        }
+    ],
+    "print-time": 60,
+    "health-print-time": 60,
+    "retries": 5,
+    "retry-pause": 5,
+    "syslog": false,
+    "user-agent": null,
+    "verbose": 0,
+    "watch": true
+}
